@@ -25,7 +25,6 @@ module("CSV Object Conversion");
 test("Ensure that the object returned has repo identifiers as keys, and the appropriate number of columns",
 	function() 
 	{
-		expect(2);
 		stop();
 		
 		fn = function(data)
@@ -33,9 +32,15 @@ test("Ensure that the object returned has repo identifiers as keys, and the appr
 			var obj = CSVtoJSON(data);
 			
 			equal( typeof obj, "object", "JSON Object has been returned");			
-			equal( typeof obj.vals, "object", "Values array has been returned");			
+			equal( typeof obj.vals, "object", "Values array has been returned");
 			
 			start();
+			
+			for (var i in obj.vals) 
+			{
+				equal( obj.vals[i].length, 45, "Split was appropriate");
+				equal( i, obj.vals[i][2], "Keys are correct");
+			}
 		};
 		
 		requestCSV("gradesExample.csv", fn);
