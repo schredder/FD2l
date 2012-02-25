@@ -11,6 +11,6 @@ test("Ensure means, medians, modes, and ranges are calculated correctly",
 		equal(  gradeRange(col, data), 0, "Calculating assignment grade range." );
 
 		// class wide
-		equal( classMedian(data), 1, "Calculating class-wide grade median." );
+		equal( classMedian(data), 0, "Calculating class-wide grade median." );
 	}
 );
