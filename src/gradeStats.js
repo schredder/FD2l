@@ -2,7 +2,7 @@
 // params: column - name of column to calculate from
 //               data - student data
 // return:     number - mean grade for a particular column
-function mean(column, data) {
+function gradeMean(column, data) {
 	// TODO
 	return 0;
 }
@@ -11,7 +11,7 @@ function mean(column, data) {
 // params: column - name of column to calculate from
 //               data - student data
 // return:     number - median grade for a particular column
-function median(column, data) {
+function gradeMedian(column, data) {
 	// TODO
 	return 0;
 }
@@ -20,7 +20,7 @@ function median(column, data) {
 // params: column - name of column to calculate from
 //               data - student data
 // return:     number - grade mode for a particular column
-function mode(column, data) {
+function gradeMode(column, data) {
 	// TODO
 	return 0;
 }
@@ -29,7 +29,7 @@ function mode(column, data) {
 // params: column - name of column to calculate from
 //               data - student data
 // return:     number - grade range for a particular column
-function range(column, data) {
+function gradeRange(column, data) {
 	// TODO
 	return 0;
 }
