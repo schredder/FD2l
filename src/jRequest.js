@@ -21,8 +21,8 @@ function CSVtoJSON(data)
 	ret = new Object();
 	ret.vals = new Array();
 
-	// iterate over all of the rows to build the object
-	for (i = 1; i < rows.length; i++)
+	// iterate over all of the rows to build the object(must start a 0 so heading is avalible downstream)
+	for (i = 0; i < rows.length; i++)
 	{
 		// Split on ", " in CSV data we received
 		cols = rows[i].split(",", rows[0].split("\",\"").length);
@@ -35,7 +35,33 @@ function CSVtoJSON(data)
 		if (cols[2] != undefined)
 			ret.vals[cols[2]] = cols;
 	}
-	
+        console.log(ret.vals);	
 	return ret;
 }
-  
+
+//Parses data into students  (should this be incoperated into csvtojson function?)
+//getStudents
+//
+function getStudents (data)
+{
+    sections = new Object();
+    sections.students = new Array();
+    
+    var json = CSVtoJSON(data);
+    for (var repo in json.vals )
+    {
+        //skip headings row
+        if (repo == "repo"){}
+        else
+        {
+            sections.students[repo] = new Array();
+            for (var score in json.vals[repo])
+            {
+                var header = json.vals["repo"]
+                sections.students[repo][json.vals[header]] = score;
+            }
+        }
+    }
+    return sectons;
+}
+ 
