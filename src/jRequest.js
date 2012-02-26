@@ -44,8 +44,7 @@ function CSVtoJSON(data)
 //
 function getStudents (data)
 {
-    sections = new Object();
-    sections.students = new Array();
+    students = new Array();
     
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
@@ -54,15 +53,19 @@ function getStudents (data)
         if (repo == "repo"){}
         else
         {
-            sections.students[repo] = new Array();
+            students[repo] = new Array();
             for (var i =0; i<json.vals[repo].length;i++)
             {
                 var header = json.vals["repo"][i];
-                sections.students[repo][json.vals[header]] = json.vals[repo][i];
+                students[repo][json.vals[header]] = json.vals[repo][i];
             }
         }
     }
-    for 
-    return sectons;
+    for (student in students) 
+    {
+        for (score in students[student])
+            console.log(score);
+    }
+    return students;
 }
  
