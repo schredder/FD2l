@@ -1,4 +1,4 @@
-// requestCSV
+// requestCSV:
 // param: 	file 	- File name to be provided
 // param: 	fn		- Callback function to receive the data. 
 function requestCSV(file, fn)
@@ -40,8 +40,9 @@ function CSVtoJSON(data)
 }
 
 //Parses data into students  (should this be incoperated into csvtojson function?)
-//getStudents
-//
+//Param: data - required for the passthrough object 
+//returns: Students in key/val array where key is repo and  the value is an array. each student array is key/val where key 
+//is header(assingment neme) and value is score recieved
 function getStudents (data)
 {
     students = new Array();
@@ -49,23 +50,25 @@ function getStudents (data)
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
     {
-        //skip headings row
+        //skip headings row this deletes headins row from return data.
         if (repo == "repo"){}
         else
         {
             students[repo] = new Array();
-            for (var i =0; i<json.vals[repo].length;i++)
+            for (var i=0; i<json.vals[repo].length;i++)
             {
+                //TODO add checks here to remove data that is usless like repo
                 var header = json.vals["repo"][i];
-                students[repo][json.vals[header]] = json.vals[repo][i];
+                students[repo][header] = json.vals[repo][i];
             }
         }
     }
+    /*
     for (student in students) 
     {
         for (score in students[student])
-            console.log(score);
-    }
+            console.log(score +" "+students[student][score]);
+    }*/
     return students;
 }
  
