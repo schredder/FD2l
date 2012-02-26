@@ -35,7 +35,6 @@ function CSVtoJSON(data)
 		if (cols[2] != undefined)
 			ret.vals[cols[2]] = cols;
 	}
-        console.log(ret.vals);	
 	return ret;
 }
 
