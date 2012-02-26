@@ -55,13 +55,14 @@ function getStudents (data)
         else
         {
             sections.students[repo] = new Array();
-            for (var score in json.vals[repo])
+            for (var i =0; i<json.vals[repo].length;i++)
             {
-                var header = json.vals["repo"]
-                sections.students[repo][json.vals[header]] = score;
+                var header = json.vals["repo"][i];
+                sections.students[repo][json.vals[header]] = json.vals[repo][i];
             }
         }
     }
+    for 
     return sectons;
 }
  
