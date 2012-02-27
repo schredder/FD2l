@@ -13,8 +13,13 @@ members.
 		$(requestCSV("gradesExample.csv", fn))
 
 # Members
-| User   | Email 					| Alternate Contact (Type)      |
-| Bob    | bob.chatman@gmail.com  	| TheAdvocateSB (AIM) 			|
-| Eric   | esschroeder@me.com    	| eric@sidmis.net (AIM/Gtalk)	|
-| Yulian |							|								|
-| Josh 	 | josh.lipps@gmail.com 	|								|
+
+	* Bob
+		* bob.chatman@gmail.com
+		* TheAdvocateSB (AIM)
+	* Eric
+		* esschroeder@me.com
+		* eric@sidmis.net (AIM/Gtalk)
+	* Yulian
+	* Josh
+		* josh.lipps@gmail.com
