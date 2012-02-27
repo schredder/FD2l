@@ -1,15 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Cache-Control" content="No-Cache" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script language="javascript" type="text/javascript" src="jQuery.js"></script>
-<script language="javascript" type="text/javascript" src="jRequest.js"></script>
-<script language="javascript" type="text/javascript">
-$(requestCSV("gradesExample.csv", getStudents))
-</script>
-<title>Example</title>
-</head>
-<body>
-</body>
+    <head>
+        <meta http-equiv="Cache-Control" content="No-Cache" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- jQuery and Plugins -->
+        <script language="javascript" type="text/javascript" src="jQuery.js"></script>
+        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
+        <!-- End jQuery and Plugins -->
+
+        <!-- RaphaelJS + g.RaphaelJS for graphs -->
+        <script language="javascript" type="text/javascript" src="include/raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="include/g.raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="include/g.bar-min.js"></script>
+        <script language="javascript" type="text/javascript" src="include/g.dot-min.js"></script>
+        <script language="javascript" type="text/javascript" src="include/g.line-min.js"></script>
+        <script language="javascript" type="text/javascript" src="include/g.pie-min.js"></script>
+        <!-- End RaphaelJS + g.RaphaelJS -->
+
+        <script language="javascript" type="text/javascript">
+            $(requestCSV("gradesExample.csv", getStudents))
+        </script>
+        <title>Example</title>
+    </head>
+    <body>
+    </body>
 </html>
