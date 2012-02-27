@@ -6,23 +6,24 @@
 
         <!-- jQuery and Plugins -->
         <script language="javascript" type="text/javascript" src="jQuery.js"></script>
-        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
         <!-- End jQuery and Plugins -->
 
         <!-- RaphaelJS + g.RaphaelJS for graphs -->
-        <script language="javascript" type="text/javascript" src="include/raphael-min.js"></script>
-        <script language="javascript" type="text/javascript" src="include/g.raphael-min.js"></script>
-        <script language="javascript" type="text/javascript" src="include/g.bar-min.js"></script>
-        <script language="javascript" type="text/javascript" src="include/g.dot-min.js"></script>
-        <script language="javascript" type="text/javascript" src="include/g.line-min.js"></script>
-        <script language="javascript" type="text/javascript" src="include/g.pie-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.bar-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.dot-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.line-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.pie-min.js"></script>
         <!-- End RaphaelJS + g.RaphaelJS -->
 
+        <!-- Our Stuff -->
+        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
         <script language="javascript" type="text/javascript">
             $(requestCSV("gradesExample.csv", getStudents))
         </script>
         <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
-        <title>Example</title>
+        <title>FD2L - Grade Viewer</title>
     </head>
     <body>
         <div id="holder"></div>

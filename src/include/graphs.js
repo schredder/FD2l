@@ -1,6 +1,6 @@
 window.onload = function () {
     var r = Raphael("holder"),
-        pie = r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2, 10], { legend: ["%%.%% - Enterprise Users", "IE Users"], legendpos: "west", href: ["http://raphaeljs.com", "http://g.raphaeljs.com"]});
+        pie = r.piechart(320, 240, 100, [10, 20, 13, 32, 5], { legend: ["%%.%% - A", "%%.%% B", "%%.%% C", "%%.%% D", "%%.%% F"], legendpos: "west"});
 
     r.text(320, 100, "Interactive Pie Chart").attr({ font: "20px sans-serif" });
     pie.hover(function () {
