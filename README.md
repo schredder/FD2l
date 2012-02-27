@@ -14,12 +14,12 @@ members.
 
 # Members
 
-	* Bob
-		* bob.chatman@gmail.com
-		* TheAdvocateSB (AIM)
-	* Eric
-		* esschroeder@me.com
-		* eric@sidmis.net (AIM/Gtalk)
-	* Yulian
-	* Josh
-		* josh.lipps@gmail.com
+* Bob
+	* bob.chatman@gmail.com
+	* TheAdvocateSB (AIM)
+* Eric
+	* esschroeder@me.com
+	* eric@sidmis.net (AIM/Gtalk)
+* Yulian
+* Josh
+	* josh.lipps@gmail.com
