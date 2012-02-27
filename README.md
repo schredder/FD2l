@@ -32,6 +32,9 @@ members.
 
 **Yulian**
 
+* yulian@kuncheff.com (Email,All Google Products, MSN)
+* daegalus (AIM)
+
 **Josh**
 
 * josh.lipps@gmail.com
