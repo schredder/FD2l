@@ -60,7 +60,8 @@ function classMedian(students) {
 function classRange(students) {
 	// TODO input checking
    var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
-   var minGrade = "$MIN", maxGrade = "$MAX";
+   var minGrade = "$MIN";
+   var maxGrade = "$MAX";
 
 	return students[maxGrade][totalKey] - students[minGrade][totalKey];
 }
@@ -76,8 +77,8 @@ function getMedian(nums) {
    // Ascending numerical sort:
    numsCopy.sort(function(a,b){ return a-b; });
    
-   var midHi = numsCopy[Math.ceil(grades.length/2)];
-   var midLo = numsCopy[Math.floor(grades.length/2)];
+   var midHi = numsCopy[Math.ceil(numsCopy.length/2)];
+   var midLo = numsCopy[Math.floor(numsCopy.length/2)];
 
 	return (midHi + midLo) / 2;
 }
