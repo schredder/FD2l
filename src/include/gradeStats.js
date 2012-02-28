@@ -4,13 +4,10 @@
 // return:   number - mean grade for a particular column
 function gradeMean(column, students) {
 	// TODO input checking
-
    var classSize = students.length;
    var sum = 0;
 
-   for (var student in students) {
-      sum += students[student][column];
-   }
+   for (var student in students) { sum += students[student][column]; }
 
 	return sum / classSize;
 }
@@ -22,17 +19,9 @@ function gradeMean(column, students) {
 function gradeMedian(column, students) {
 	// TODO input checking
    var grades = [];
+   for (var student in students) { grades.push(student[column]); }
 
-   for (var student in students) {
-      grades.push(student[column]);
-   }
-
-   grades.sort(function(a,b){ return a-b; });
-   
-   midHi = grades[Math.ciel(grades.length/2)];
-   midLo = grades[Math.floor(grades.length/2)];
-
-	return (medHi + medLow) / 2;
+	return getMedian(grades);
 }
 
 // Calculates grade range for a particular column
@@ -44,28 +33,65 @@ function gradeRange(column, students) {
    var grades = [];
 
    for (var student in students) {
-      grades.push(student[column]);
+      if (!student.match(/^\$/)) { grades.push(student[column]); }
    }
 
-   grades.sort(function(a,b){ return a-b; });
-   
-   /* Can't remember if JS arrays support "-1" or not. Guess I'll find out in
-      testing. */
-	return grades[-1] - grades[0];
+	return getRange(grades);
 }
 
 // Calculates grade median for the whole class
 // params: students - student students
 // return:   number - median grade for a particular column
 function classMedian(students) {
-	// TODO
-	return 0;
+	// TODO input checking
+   var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
+   var grades = [];
+
+   for (var student in students) { 
+      if (!student.match(/^\$/)) { grades.push(student[column]); }
+   }
+
+	return getMedian(grades);
 }
 
 // Calculates grade range for the whole class
 // params: students - student students
 // return:   number - median grade for a particular column
 function classRange(students) {
-	// TODO
-	return 0;
+	// TODO input checking
+   var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
+   var minGrade = "$MIN", maxGrade = "$MAX";
+
+	return students[maxGrade][totalKey] - students[minGrade][totalKey];
+}
+
+
+// Returns the median of an array of numbers
+// params:   nums - array of numbers
+// return: number - median of the given array
+function getMedian(nums) {
+   // Get a copy of nums: (if there's a bettery way, I'd love to know)
+   var numsCopy = nums.slice(0);
+   
+   // Ascending numerical sort:
+   numsCopy.sort(function(a,b){ return a-b; });
+   
+   var midHi = numsCopy[Math.ceil(grades.length/2)];
+   var midLo = numsCopy[Math.floor(grades.length/2)];
+
+	return (midHi + midLo) / 2;
+}
+
+// Returns the range of an array of numbers
+// params:   nums - array of numbers
+// return: number - range of the given array
+function getRange(nums) {
+   // Get a copy of nums: (if there's a bettery way, I'd love to know)
+   var numsCopy = nums.slice(0);
+   
+   // Ascending numerical sort:
+   numsCopy.sort(function(a,b){ return a-b; });
+   var last = numsCopy.length - 1;
+
+	return numsCopy[last] - numsCopy[0];
 }
