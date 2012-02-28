@@ -40,29 +40,34 @@ function CSVtoJSON(data)
 
 //Parses data into students  (should this be incoperated into csvtojson function?)
 //Param: data - required for the passthrough object 
-//returns: Students in key/val array where key is repo and  the value is an array. each student array is key/val where key 
+//returns: Students object with socres array in key/val array where key is repo and  the value is an array. each student array is key/val where key 
 //is header(assingment neme) and value is score recieved. Contains a row where the headings repo where the headings are equal to the values 
 function getStudents (data)
 {
-    students = new Array();
+    students = new Object();
+    students.scores = new Array();
     
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
     {
-        students[repo] = new Array();
+        //TODO rewrite headers to human readable in "repo" row
+        students.scores[repo] = new Array();
         for (var i=0; i<json.vals[repo].length;i++)
         {
-            //TODO add checks here to remove data that is usless like repo
+            //TODO add checks here to remove data that is usless like repo 
+            //TODO Clean header row headers 
             var header = json.vals["repo"][i];
-            students[repo][header] = json.vals[repo][i];
+            students.scores[repo][header] = json.vals[repo][i];
         }
     }
-    /*
-    for (student in students) 
+   /* 
+    #test build loop
+    for (student in student.sscores) 
     {
-        for (score in students[student])
-            console.log(score +" "+students[student][score]);
-    }*/
+        for (score in students.scores[student])
+            console.log(score +" "+students.scores[student][score]);
+    }
     return students;
+    */ 
 }
  
