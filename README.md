@@ -9,12 +9,12 @@ members.
 
 ## Folder Overview
 
-./docs 		- details of how to install and execute the application
-./src  		- source code of the project. Load **index.html** to begin execution.
-./test		- tests for the source code 
-./utils		- non mandatory scripts and binaries that are used for regular maintenance. 
+	./docs 		- details of how to install and execute the application
+	./src  		- source code of the project. Load **index.html** to begin execution.
+	./test		- tests for the source code 
+	./utils		- non mandatory scripts and binaries that are used for regular maintenance. 
 
-README.md   - You are already here. Read something special
+	README.md   - You are already here. Read something special
 
 ## Entry Point
 
