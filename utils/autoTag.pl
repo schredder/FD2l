@@ -6,5 +6,5 @@ my @abbr = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec );
 												
 my $TagName = ( $year + 1900 ) . "_" . $abbr[$mon] . "_" . $mday . "_Auto";
 
-
-print $TagName;
+`hg tag -m "Auto tagging for release" $TagName`;
+`hg push`
