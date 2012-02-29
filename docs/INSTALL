@@ -1,0 +1,58 @@
+# Install
+
+1. JSIncludes
+
+	Within the target file add the following statements to the head tags:
+
+
+        <!-- jQuery and Plugins -->
+        <script language="javascript" type="text/javascript" src="jQuery.js"></script>
+        <!-- End jQuery and Plugins -->
+
+        <!-- RaphaelJS + g.RaphaelJS for graphs -->
+        <script language="javascript" type="text/javascript" src="lib/raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.raphael-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.bar-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.dot-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.line-min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/g.pie-min.js"></script>
+        <!-- End RaphaelJS + g.RaphaelJS -->
+
+        <!-- Our Stuff -->
+        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
+        <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
+
+2. Body Entries
+
+	Within the body tags of the html:
+
+        <div class="graphContainer"><div id="classBreakdown"></div></div>
+        <div class="graphContainer"><div id="classStanding"></div></div>
+
+3. Entry Point
+	
+	Add a grades file and reference it in the code using the entry point of the application. 	
+		
+	<script language="javascript" type="text/javascript">
+		$(requestCSV("gradesExample.csv", fn))
+	</script>
+	
+	You will also want to write an entry point function, which will accept the CSV data as a 
+	JS object. The function should accept a single parameter.
+	
+	We have included a few that can be used for testing:
+
+		CSVtoJSON 
+			- Converts the CSV data to a JS object.
+		getStudents 
+			- Cleans up the CSV data into a JS object with repository names and column headers as lookups. 
+	
+
+# Target File
+
+	Because of the flexibility of Javascript on the web our tool requires very few things. 
+	The target file can be anything from a raw html file (*.htm, *.html) or rendered HTML 
+	from PHP, Python or your language of choice. Our included example is a simple HTML 
+	file that is the entry point of the application to show the flexibility. All of the 
+	dynamics are driven by JavaScript.
+	

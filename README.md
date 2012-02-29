@@ -9,10 +9,29 @@ members.
 
 ## Folder Overview
 
-	./docs 		- details of how to install and execute the application
-	./src  		- source code of the project. Load **index.html** to begin execution.
-	./test		- tests for the source code 
-	./utils		- non mandatory scripts and binaries that are used for regular maintenance. 
+	./docs/ 		
+		- Walkthroughs and overviews of the application.
+	./docs/INSTALL 
+		- Walk through the details of setting up and the assumptions being 
+			made by the application.
+	./src/  		
+		- Source code of the project. Load index.html to begin execution.
+	./src/lib/
+		- Libraries that are used by this project.
+	./src/include/
+		- Our source code
+	./src/gradesExample.csv
+		- Sample grades CSV 
+	./src/index.html
+		- Sample Application Entry Point
+	./src/style.css
+		- Sample CSS for Application
+	./test/		
+		- tests for the source code 
+	./test/index.html
+		- Entry point for QUnit test execution.
+	./utils/		
+		- non mandatory scripts and binaries that are used for regular maintenance. 
 
 	README.md   - You are already here. Read something special
 
