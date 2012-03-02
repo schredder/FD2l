@@ -4,10 +4,13 @@
 // return:   number - mean grade for a particular column
 function gradeMean(column, students) {
 	// TODO input checking
-   var classSize = students.length;
+   var classSize = 0;
    var sum = 0;
 
-   for (var student in students) { sum += students[student][column]; }
+   for (var id in students) {
+      sum += students[id][column];
+      classSize++;
+   }
 
 	return sum / classSize;
 }
@@ -19,7 +22,7 @@ function gradeMean(column, students) {
 function gradeMedian(column, students) {
 	// TODO input checking
    var grades = [];
-   for (var student in students) { grades.push(student[column]); }
+   for (var id in students) { grades.push(students[id][column]); }
 
 	return getMedian(grades);
 }
@@ -32,8 +35,8 @@ function gradeRange(column, students) {
 	// TODO input checking
    var grades = [];
 
-   for (var student in students) {
-      if (!student.match(/^\$/)) { grades.push(student[column]); }
+   for (var id in students) {
+      if (!id.match(/^\$/)) { grades.push(students[id][column]); }
    }
 
 	return getRange(grades);
@@ -47,8 +50,8 @@ function classMedian(students) {
    var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
    var grades = [];
 
-   for (var student in students) { 
-      if (!student.match(/^\$/)) { grades.push(student[column]); }
+   for (var id in students) { 
+      if (!id.match(/^\$/)) { grades.push(students[id][totalKey]); }
    }
 
 	return getMedian(grades);
