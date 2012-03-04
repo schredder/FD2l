@@ -96,7 +96,6 @@ function getMedian(nums) {
    
    // Ascending numerical sort:
    numsCopy.sort(function(a,b){ return a-b; });
-   console.log(numsCopy);
    
    // If array has even number of elements, median is avg of two middle elements
    if (numsCopy.length %2 == 0) {
