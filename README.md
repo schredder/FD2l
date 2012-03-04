@@ -14,6 +14,8 @@ members.
 	./docs/INSTALL 
 		- Walk through the details of setting up and the assumptions being 
 			made by the application.
+	./docs/csv-standards
+		- Standards, assumptions, and expectations for the grade CSV file.
 	./src/  		
 		- Source code of the project. Load index.html to begin execution.
 	./src/lib/
