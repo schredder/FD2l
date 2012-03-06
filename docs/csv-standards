@@ -1,7 +1,15 @@
+Grades CSV Standards and Expectations
+	In order to work within the constraints of CSV, a set of standards needs to 
+be established in order to maintain operability and consistency of fd2l. Using 
+these standards, relationships between students, their grades, and grade 
+statistics are more readily delineated and computed.
+
+TODO
+
 filetype: CSV
 fields:
     section
-        Descrition: Class Section
+        Description: Class Section
         Type: String
         Fixed: Y
     magic:
@@ -10,17 +18,17 @@ fields:
         Fixed: Y    
         Note: This should probably be hidden.
     repo
-        Descrition: Unique Student ID 
+        Description: Unique Student ID 
         Type: String
         Fixed: Y
         Format: 3[a-z0-9]
 	TOTAL(100%)
-        Descrition: 
+        Description: 
         Type: 
         Fixed: 
         Format: 
 	GRADE
-        Descrition: 
+        Description: 
         Type: 
         Fixed: 
         Format: 

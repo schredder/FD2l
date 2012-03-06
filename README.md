@@ -14,6 +14,12 @@ members.
 	./docs/INSTALL 
 		- Walk through the details of setting up and the assumptions being 
 			made by the application.
+	./docs/csv-standards
+		- Standards, assumptions, and expectations for the grade CSV file.
+	./docs/iteration-history
+		- Iteration History to track goals of each iterration.
+	./docs/userstories
+		- User Stories,duplicatted from bitbucket page.
 	./src/  		
 		- Source code of the project. Load index.html to begin execution.
 	./src/lib/
