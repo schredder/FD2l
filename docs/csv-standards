@@ -11,219 +11,196 @@ fields:
     section
         Description: Class Section
         Type: String
-        Fixed: Y
+        Repetable: N
     magic:
         Description: Code for fd2l login side
         Type: String
-        Fixed: Y    
+        Repetable: N    
         Note: This should probably be hidden.
     repo
         Description: Unique Student ID 
         Type: String
-        Fixed: Y
+        Repetable: N
         Format: 3[a-z0-9]
 	TOTAL(100%)
-        Description: 
-        Type: 
-        Fixed: 
-        Format: 
+        Description: Total Numerical Grade in Percent 
+        Type: Number (floating) %
+        Repetable: N
+        Format: 0.0-100.0 (can this excede 100?)
 	GRADE
-        Description: 
-        Type: 
-        Fixed: 
-        Format: 
-	q1
-		Description:
-		Type:
-		Fixed:
-		Format:
-	q2
-		Description:
-		Type:
-		Fixed:
-		Format:
-	q3:9/19/2011
-		Description:
-		Type:
-		Fixed:
-		Format:
-	q3
-		Description:
-		Type:
-		Fixed:
-		Format:
-	q4
-		Description:
-		Type:
-		Fixed:
-		Format:
-	q5
-		Description:
-		Type:
-		Fixed:
-		Format:
-	Q:11/15/2011
-		Description:
-		Type:
-		Fixed:
-		Format:
-	qBonus
-		Description:
-		Type:
-		Fixed:
-		Format:
-	Qs(10%)
-		Description:
-		Type:
-		Fixed:
-		Format:
+        Description: Total Letter Grade
+        Type: String
+        Repetable: N
+        Format: [A-DF] (no +-?)
+	q[x][:note]
+		Description: Quiz 1
+		Type: Number
+		Repetable: Y
+		Heading Format: q[0-9]*(:*)? 
+        Format: [0-9]* 
+#	Q:11/15/2011
+#		Description: Quiz :11/15/2011 (does not conform to naming standard ??)
+#		Type: Number
+#		Repetable: Y
+#		Format: [0-9]*
+#	qBonus
+#		Description: Quiz Bonus: Ideally this would be left out.
+#		Type: Number
+#		Repetable: unknown
+#		Format: 
+	Qs(X%)
+		Description: Quiz Total Percentage out of (X%)
+		Type: Number(float)
+		Repetable: N
+		Heading Format: Qs([0-9]+[%]) 
+		Format: 0.0-X
 	m1s1
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m1s2
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m1s3
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	M1(10%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m2a
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m2b
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m2c
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	M2(10%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m3a
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m3b
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m3c
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	M3(10%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m4a
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m4b
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	m4c
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	M4(10%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	fin-a
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	fin-b
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	fin-c
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	FIN(30%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	Hws(20%)
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW1
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW2
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW3
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW4
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW5
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW6
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW7
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
 	HW Feedback
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
     "" 
 		Description:
 		Type:
-		Fixed:
+		Repetable:
 		Format:
