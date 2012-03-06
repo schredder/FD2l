@@ -1,0 +1,17 @@
+Grades webpage
+Student user would like to be able to view their grades at any time as they are graded throughout their semester. Ideally they would be able to understand their current grade total and what grade they will receive based on current scores.
+
+Graphics
+Student User would like to see Graphics to compare how they did on an assignment compared to the rest of the class, compared to the cutoffs. Also how they are doing compared to the class in an overall comparison.
+
+Grades Recorded with cutoffs
+Professor User would like to easily add data for quizzes, homework, midterms/tests and final (other types? possibly 10% participation or bonuses ). The data stored in way that allows professor to dynamically add and remove data items throughout the semester. Ideally he/she would also be able to put Cutoff students for grade levels: 100%, A,B,C,D,F cutoffs.
+
+Alternate Assignments Versions
+Professor user as an option graded items should allow for multiple versions of one assignment. ie midterm 3A or 3B. This might allow for grading based on multiple sections with different tests and therefore different cutoffs.
+
+Any Web Client Supported
+Student would like to be able to view the data on any web based device. Mobile devices, tablet devices, Traditional PCs(laptop/desktop) in any major browser or OS.
+
+Mulitpule Class Support
+Students would like to be able to choose their membership in a class.
