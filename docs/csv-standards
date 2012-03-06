@@ -48,28 +48,18 @@ fields:
 #		Type: Number
 #		Repetable: unknown
 #		Format: 
-	Qs(X%)
-		Description: Quiz Total Percentage out of (X%)
+	Qs(P%)
+		Description: Quiz Total Persentage (P% of final Grade)
 		Type: Number(float)
 		Repetable: N
 		Heading Format: Qs([0-9]+[%]) 
-		Format: 0.0-X
-	m1s1
-		Description:
-		Type:
-		Repetable:
+		Format: 0.0-P
+	m[X]s[y]
+		Description: Midterm [X] Section [Y]
+		Type: Number
+		Repetable:Y
 		Format:
-	m1s2
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m1s3
-		Description:
-		Type:
-		Repetable:
-		Format:
-	M1(10%)
+	M[x]([P]%)
 		Description:
 		Type:
 		Repetable:
