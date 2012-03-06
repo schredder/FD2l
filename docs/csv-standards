@@ -4,7 +4,6 @@ be established in order to maintain operability and consistency of fd2l. Using
 these standards, relationships between students, their grades, and grade 
 statistics are more readily delineated and computed.
 
-TODO
 
 filetype: CSV
 fields:
@@ -32,11 +31,11 @@ fields:
         Type: String
         Repetable: N
         Format: [A-DF] (no +-?)
-	q[x][:note]
+	q[$x][:note]
 		Description: Quiz 1
 		Type: Number
 		Repetable: Y
-		Heading Format: q[0-9]*(:*)? 
+		Heading Format: q$x(:*)? 
         Format: [0-9]* 
 #	Q:11/15/2011
 #		Description: Quiz :11/15/2011 (does not conform to naming standard ??)
@@ -48,109 +47,39 @@ fields:
 #		Type: Number
 #		Repetable: unknown
 #		Format: 
-	Qs(P%)
-		Description: Quiz Total Persentage (P% of final Grade)
+	Qs($P%)
+		Description: Quizs Total Percentage ($P% of final Grade)
 		Type: Number(float)
 		Repetable: N
 		Heading Format: Qs([0-9]+[%]) 
 		Format: 0.0-P
-	m[X]s[y]
-		Description: Midterm [X] Section [Y]
+	m[$x]s[$y]
+		Description: Midterm [$x] Section [$y]
 		Type: Number
 		Repetable:Y
-		Format:
-	M[x]([P]%)
-		Description:
+		Format: [0-9]*
+	M[$x]($P%)
+		Description: Midterm [$x] ($P% of final grade) (paired with previous element)
+		Type: Number (float)
+		Repetable: Y
+		Format: 0.0-$P
+	fin-$x
+		Description: Final X(why not matching section number?)
+		Type: number
+		Repetable: Y
+		Format: [0-9]*
+	FIN($P%)
+		Description: Final Total Percentage ($P% of final Grade)
 		Type:
 		Repetable:
 		Format:
-	m2a
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m2b
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m2c
-		Description:
-		Type:
-		Repetable:
-		Format:
-	M2(10%)
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m3a
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m3b
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m3c
-		Description:
-		Type:
-		Repetable:
-		Format:
-	M3(10%)
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m4a
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m4b
-		Description:
-		Type:
-		Repetable:
-		Format:
-	m4c
-		Description:
-		Type:
-		Repetable:
-		Format:
-	M4(10%)
-		Description:
-		Type:
-		Repetable:
-		Format:
-	fin-a
-		Description:
-		Type:
-		Repetable:
-		Format:
-	fin-b
-		Description:
-		Type:
-		Repetable:
-		Format:
-	fin-c
-		Description:
-		Type:
-		Repetable:
-		Format:
-	FIN(30%)
-		Description:
-		Type:
-		Repetable:
-		Format:
-	Hws(20%)
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW1
-		Description:
+	Hws(P%)           
+		Description: Homeworks Total Percentage #why is this before HW items while all other are after. Also why is capitilization different 
+		Type: Number (float)
+		Repetable: N
+		Format:0.0-P 
+	HW$X
+		Description: Homework Assignment $X
 		Type:
 		Repetable:
 		Format:
