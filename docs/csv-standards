@@ -4,7 +4,7 @@ be established in order to maintain operability and consistency of fd2l. Using
 these standards, relationships between students, their grades, and grade 
 statistics are more readily delineated and computed.
 
-
+# commeted out some fields and 
 filetype: CSV
 fields:
     section
@@ -35,20 +35,20 @@ fields:
 		Description: Quiz 1
 		Type: Number
 		Repetable: Y
-		Heading Format: q$x(:*)? 
+		Heading Format: q$x(:.*)? 
         Format: [0-9]* 
 #	Q:11/15/2011
-#		Description: Quiz :11/15/2011 (does not conform to naming standard ??)
+#		Description: Quiz :11/15/2011 # (does not conform to naming standard ??)
 #		Type: Number
 #		Repetable: Y
 #		Format: [0-9]*
 #	qBonus
-#		Description: Quiz Bonus: Ideally this would be left out.
+#		Description: Quiz Bonus # Ideally this would be left out.
 #		Type: Number
 #		Repetable: unknown
 #		Format: 
-	Qs($P%)
-		Description: Quizs Total Percentage ($P% of final Grade)
+	Qs([$P]%)
+		Description: Quizs Total Percentage ([$P%] of final Grade)
 		Type: Number(float)
 		Repetable: N
 		Heading Format: Qs([0-9]+[%]) 
@@ -57,69 +57,51 @@ fields:
 		Description: Midterm [$x] Section [$y]
 		Type: Number
 		Repetable:Y
+		Heading Format: m([0-9]+ 
 		Format: [0-9]*
 	M[$x]($P%)
 		Description: Midterm [$x] ($P% of final grade) (paired with previous element)
 		Type: Number (float)
 		Repetable: Y
+		Heading Format: Qs([0-9]+[%]) 
 		Format: 0.0-$P
-	fin-$x
+	fin-[$x] # why dash?
 		Description: Final X(why not matching section number?)
 		Type: number
 		Repetable: Y
+		Heading Format: fin-[0-9]+ 
 		Format: [0-9]*
 	FIN($P%)
 		Description: Final Total Percentage ($P% of final Grade)
-		Type:
-		Repetable:
-		Format:
-	Hws(P%)           
+		Type: Number (float)
+		Repetable: N 
+		Heading Format: FIN([0-9]+[%]) 
+		Format: 0.0-$P
+	Hws($P%) #should be HWs($P%)          
 		Description: Homeworks Total Percentage #why is this before HW items while all other are after. Also why is capitilization different 
 		Type: Number (float)
 		Repetable: N
-		Format:0.0-P 
-	HW$X
+		Heading Format: Hws([0-9]+%)
+		Format:0.0-$P 
+	HW$X #should be hw$x
 		Description: Homework Assignment $X
-		Type:
-		Repetable:
-		Format:
-	HW2
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW3
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW4
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW5
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW6
-		Description:
-		Type:
-		Repetable:
-		Format:
-	HW7
-		Description:
-		Type:
-		Repetable:
-		Format:
+		Type: Number
+		Repetable: Y
+		Heading Format: HW[0-9]+ 
+		Format: [0-9]*
 	HW Feedback
-		Description:
-		Type:
-		Repetable:
-		Format:
-    "" 
-		Description:
-		Type:
-		Repetable:
-		Format:
+		Description: Homework feedback field 
+		Type: String
+		Repetable: N
+		Format:.*
+#    "" 
+#		Description: unknown
+#		Type:
+#		Repetable:
+#		Format:
+
+# Suggested Format #
+# Section,magic,repo,TOTAL(100%),GRADE,q{quizNum}:[comment],Qs({quizP}%),m{midtermNum}S{sectionNum},M{midtermNum}({midtermP}%),fin{finalNum},FIN({finalp}%),hw{hwNum},HWs({hwP}%),HW Feedback 
+# Example 
+# "Section","magic","repo","TOTAL(100%)","GRADE","q1:foo","q2","q3:bar","Qs(10%)","m1s1,m1s2,M1(15%)","m2s1,m2s1,M2(15%)","m3s1,m3s2","M3(20%)","fin1","fin2","FIN(30%)","hw1","hw2","hw3","HWs(10%)","HW Feedback" 
+# "s1cs","cs160","ab1","100","A","10","10","10","10.0","10","",15.0,"10","","15%","10","","20.0","40","","30.0","10","10","10","10.0","Great stuff" 
