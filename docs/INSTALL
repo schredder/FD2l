@@ -19,8 +19,9 @@
         <!-- End RaphaelJS + g.RaphaelJS -->
 
         <!-- Our Stuff -->
-        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
+        <script language="javascript" type="text/javascript" src="include/jRequest.js"></script>
         <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
+        <script language="javascript" type="text/javascript" src="include/gradeStats.js"></script>
 
 2. Body Entries
 

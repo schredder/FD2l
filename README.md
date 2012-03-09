@@ -36,9 +36,12 @@ members.
 		- tests for the source code 
 	./test/index.html
 		- Entry point for QUnit test execution.
+	./test/index-min.html
+		- Entry point for QUnit test execution against minified js source.
 	./utils/		
 		- non mandatory scripts and binaries that are used for regular maintenance. 
 
+	Makefile    - Minifies javascript source for release
 	README.md   - You are already here. Read something special
 
 ## Entry Point
