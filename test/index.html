@@ -4,17 +4,19 @@
 	<meta charset="UTF-8" />
 	<title>QUnit Test Suite</title>
 	<link rel="stylesheet" href="qunit/qunit-git.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="../src/lib/jQuery.js"></script>
-	<script type="text/javascript" src="../src/include/jRequest.js"></script>
-	<script type="text/javascript" src="../src/include/gradeStats.js"></script>
+	<link rel="stylesheet" href="qunit/qunit-composite.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="qunit/qunit-git.js"></script>
+	<script type="text/javascript" src="qunit/qunit-composite.js"></script>
 	
 	<!-- Start Tests -->
-	<script type="text/javascript" src="test-tests.js"></script>
-	<script type="text/javascript" src="test-gradeStats.js"></script>
+	<script>
+	QUnit.testSuites([
+			"minify.html",
+			"primary.html"
+	]);
+	</script>
 	<!-- End Tests -->
 
-	<script src="qunit/swarminject.js"></script>
 </head>
 <body>
 	<div id="qunit"></div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- Make sure you've run "make" from the project root to test minified source -->
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>QUnit Test Suite</title>
+	<link rel="stylesheet" href="qunit/qunit-git.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="../src/lib/jQuery.js"></script>
+	<script type="text/javascript" src="../src/include/jRequest-min.js"></script>
+	<script type="text/javascript" src="../src/include/gradeStats-min.js"></script>
+	<script type="text/javascript" src="qunit/qunit-git.js"></script>
+	
+	<!-- Start Tests -->
+	<script type="text/javascript" src="test-tests.js"></script>
+	<script type="text/javascript" src="test-gradeStats.js"></script>
+	<!-- End Tests -->
+
+	<script src="qunit/swarminject.js"></script>
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture">test markup</div>
+	<div><h1>If these tests fail, make sure you ran "make" in the project root</h1></div>
+</body>
+</html>
