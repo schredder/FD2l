@@ -53,30 +53,47 @@ function CSVtoJSON(data)
 	return ret;
 }
 
-var Score()
-{
-    ;
-}
 //student object constructor
 //Param: student is object map of student data.
 //Param: the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
-//Param: catagories row from csv (assingemtn groupings can include anything)
+//Param: catagories row from csv (assignment groupings can include anything)
 var Student(student,types,catagories)
-{   
-    var catagoriesList = getCatagories(catagories); 
-    this.scores = ;
+{    
+    this.letterGrade = "";
+    this.notes = "";
+    this.totalGrade = -1;
+    this.section = "";
+    this.repo = "";
+    this.scores = getCatagories(catagories);
+
+    //TODO Add set total Grade Function
+
     for(key in Object.Keys(student))
-    {
+    {   
         
+
+        if(type[key]=="$TYPE")
+            this.repo = student[key];
+        else if(type[key]==="note")
+            this.note = student[key];    
+        else if(type[key]==="lettergrade")
+            this.LetterGrade = student[key];    
+        else if(type[key]==="section")
+            this.section = student[key];    
+        else if(type[key]==="score")
+        {
+            if(catagoies[key]=="total-grade")
+                this.totalGrade=total-grade;
+            else
+            {
+                this.scores[catagories[key]][key]=student[key];
+            }
+ 
+        }
+    
     }
-    this.letterGrade = ;
-    this.notes = ;
-    this.totalGrade = ;
-    this.section = ;
-    this.repo;
 }
 
-//Parses data into students  (should this be incoperated into csvtojson function?)
 //Param: data - required for the passthrough object 
 //returns: Students object with socres array in key/val array where key is repo and  the value is an array. each student array is key/val where key 
 //is header(assingment neme) and value is score recieved. Contains a row where the headings repo where the headings are equal to the values 
@@ -87,8 +104,12 @@ function getSection (data)
 		
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
-        section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
-    
+    {   
+        
+        if(repo != "$TYPE" || repo != "$CATAGORY") 
+            section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
+    }
+    //TODO add class prorates
     return section;
      
 }
