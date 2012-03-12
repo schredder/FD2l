@@ -10,6 +10,7 @@ SHELL = /bin/sh
 JSSOURCEDIR := src/include
 JSSOURCE := $(filter-out %-min.js,$(wildcard $(JSSOURCEDIR)/*.js))
 JSMINSOURCE := $(JSSOURCE:%.js=%-min.js)
+TESTGENERATE := cp test/primary.html test/minify.html && sed -i 's/jRequest.js/jRequest-min.js/g' && sed -i 's/gradeStats.js/gradeStates-min.js/g' && sed -i 's/grades.js/grades-min.js/g'
 
 
 # CPAN seems to think this minifier will work well all the way back to Perl 5.8,
@@ -29,5 +30,8 @@ $(JSMINSOURCE) :
 
 
 # Removes all files ending in "-min.js" in src/include
+gentest: $(TESTGENERATE)
+	
 clean :
 	-rm $(JSMINSOURCE)
+	-rm test/minify.html
