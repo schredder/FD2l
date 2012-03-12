@@ -52,72 +52,52 @@ function CSVtoJSON(data)
 	}
 	return ret;
 }
-/*
+
 //student object constructor
-var Student(student,catagorieslist,)
-{
+//Param: student is array of student data.
+//Param: types is the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
+//Param: catagory row from csv (assingemtn groupings can include anything)
+var Student(student,types,catagories)
+{   
+    var catagoriesList = getCatagories(catagories); 
+    for(data in student.keys)
     this.scores = ;
+    this.letterGrade = ;
+    this.notes = ;
+    this.totalGrade = ;
+    this.section = ;
+    this.repo;
 }
+
 //Parses data into students  (should this be incoperated into csvtojson function?)
 //Param: data - required for the passthrough object 
 //returns: Students object with socres array in key/val array where key is repo and  the value is an array. each student array is key/val where key 
 //is header(assingment neme) and value is score recieved. Contains a row where the headings repo where the headings are equal to the values 
-function getStudents (data)
+function getSection (data)
 {
-    var students = new Object();
-    students.scores = new Array();
-    //dynamic members
-    
-    students.hwPro;
-    students.quizPro;
-    students.finalPro;
-    studnets.midtermPro;
+    var section = new Object();
+    section.students = new Array();
 		
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
-    {
-        //TODO rewrite headers to human readable in "repo" row
-        students.scores[repo] = new Array();
-        for (var i=0; i<json.vals[repo].length;i++)
-        {
-            //TODO add checks here to remove data that is usless like repo 
-            //TODO Clean header row headers 
-            //TODO Validate Data
-            var header = json.vals["repo"][i];
-            students.scores[repo][header] = json.vals[repo][i];
-            
-            //populate subtype arrays
-	        if(json.vals["$CATAGORY"][i]=="quiz")
-            {
-                
-            }
-            else if(json.vals["$CATAGORY"][i]=="midterm")
-            {
-            }
-            else if(json.vals["$CATAGORY"][i]=="hw")
-            {  
-                
-            }
-            else if(json.vals["$CATAGORY"][i]=="final")
-            {
-                student.finalTest = json.vals[repo][i];
-            }
-
-        }
-    }
+        section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
     
-    #test build loop
+    /*#test build loop
     for (student in student.sscores) 
     {
         for (score in students.scores[student])
             console.log(score +" "+students.scores[student][score]);
-    }
-    return students;
+    }*/
+    return section;
      
 }
-function GetCatagory(students)
+//return array of catagories
+function getCatagories(catagoriesArray)
 {
-    
-    return 
+    var catagoriesList = new Array();
+    for (item in catagoiesArray.values)
+        if(item != "$TYPE")
+            catagoriesList[item] = item;
+    return catagoriesList;
 } 
-*/
+
