@@ -1,38 +1,37 @@
-# This Makefile is for quick minification of fd2l's javascript sources which 
-#   reside in src/include for testing and release.
+# This Makefile is for quick minification of fd2l's javascript sources, along
+#   with generating tests for minified source which reside in src/include for
+#   testing and release.
 #
 # Eric Schroeder 2012-03-08
 # Team Bananas, CS160 sjsu.edu
 
 SHELL = /bin/sh
-.PHONY: all clean
+.PHONY: all minify gentest clean
 
 JSSOURCEDIR := src/include
 JSSOURCE := $(filter-out %-min.js,$(wildcard $(JSSOURCEDIR)/*.js))
 JSMINSOURCE := $(JSSOURCE:%.js=%-min.js)
-TESTGENERATE := cp test/primary.html test/minify.html && sed -i 's/jRequest.js/jRequest-min.js/g' test/minify.html && sed -i 's/gradeStats.js/gradeStates-min.js/g' test/minify.html && sed -i 's/grades.js/grades-min.js/g' test/minify.html 
-
 
 # CPAN seems to think this minifier will work well all the way back to Perl 5.8,
 #   so I'm not too worried about compatibility at this time.
-MINIFY := utils/jsMinifier.pl
-
+MINIFIER := utils/jsMinifier.pl
 
 # Default target: Minifies all .js source in src/include
-all : $(JSMINSOURCE) gentest
-minify : $(all)
+all : minify gentest
 
+# Minifies all our js code in src/include
+minify : $(JSMINSOURCE)
 
-# Expands to every target. (That is, you can minify a single js source in
-#   src/include by specifying the relative path of the desired "-min.js" file.
+# Using `make src/include/filename.js` will minify only a single target.
+#   This rule expands to include every target in src/include.
 $(JSMINSOURCE) :
-	$(MINIFY) $(@:%-min.js=%.js) $@
+	$(MINIFIER) $(@:%-min.js=%.js) $@
 
-
-# Removes all files ending in "-min.js" in src/include
+# Generates test/minify.html qunit test from primary.html to test minified js
 gentest :
-	$(TESTGENERATE)
+	sed -r 's/include\/(.*)\.js/include\/\1-min.js/g' \
+	  test/primary.html > test/minify.html 
 	
+# Removes all files ending in "-min.js" in src/include and test/minify.html
 clean :
-	-rm $(JSMINSOURCE)
-	-rm test/minify.html
+	-rm test/minify.html $(JSMINSOURCE)
