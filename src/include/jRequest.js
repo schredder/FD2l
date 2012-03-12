@@ -19,7 +19,9 @@ function CSVtoJSON(data)
 	rows = data.split("\n");
 
 	ret = new Object();
-	ret.vals = new Array();
+	ret.vals = new Object();
+    var header = new Array();
+    
 
 	// iterate over all of the rows to build the object(must start a 0 so heading is avalible downstream)
 	for (i = 0; i < rows.length; i++)
@@ -30,44 +32,95 @@ function CSVtoJSON(data)
 		// Remove quotes out of all underlying elements
 		for (j = 0; j < cols.length; j++)
 			cols[j] = cols[j].replace(/\"/g, "");
-
+        
 		// Skip over undefined values for data integrity
 		if (cols[2] != undefined)
-			ret.vals[cols[2]] = cols;
+        {   
+            //changed to add k/v object instead of array
+            if(i==0)
+            {
+                header = cols;
+            }
+            else 
+            {
+                var student = {};
+                for (var k=0; k<cols.length;k++)
+                    student[header[k]] = col[k];
+                ret.vals[cols[2]] = student;
+            }
+        }
 	}
 	return ret;
 }
 
-//Parses data into students  (should this be incoperated into csvtojson function?)
-//Param: data - required for the passthrough object 
-//returns: Students object with socres array in key/val array where key is repo and  the value is an array. each student array is key/val where key 
-//is header(assingment neme) and value is score recieved. Contains a row where the headings repo where the headings are equal to the values 
-function getStudents (data)
-{
-    students = new Object();
-    students.scores = new Array();
+//student object constructor
+//Param: student is object map of student data.
+//Param: the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
+//Param: catagories row from csv (assignment groupings can include anything)
+var Student(student,types,catagories)
+{    
+    this.letterGrade = "";
+    this.notes = "";
+    this.totalGrade = -1;
+    this.section = "";
+    this.repo = "";
+    this.scores = getCatagories(catagories);
+
+    //TODO Add set total Grade Function
+
+    for(key in Object.Keys(student))
+    {   
+        
+
+        if(type[key]=="$TYPE")
+            this.repo = student[key];
+        else if(type[key]==="note")
+            this.note = student[key];    
+        else if(type[key]==="lettergrade")
+            this.LetterGrade = student[key];    
+        else if(type[key]==="section")
+            this.section = student[key];    
+        else if(type[key]==="score")
+        {
+            if(catagoies[key]=="total-grade")
+                this.totalGrade=total-grade;
+            else
+            {
+                this.scores[catagories[key]][key]=student[key];
+            }
+ 
+        }
     
+    }
+}
+
+//Param: data - required for the passthrough object 
+//returns section object with map object of  students see Student construcor for more info
+function getSection (data)
+{
+    var section = {};
+    section.students = {};
+		
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
-    {
-        //TODO rewrite headers to human readable in "repo" row
-        students.scores[repo] = new Array();
-        for (var i=0; i<json.vals[repo].length;i++)
-        {
-            //TODO add checks here to remove data that is usless like repo 
-            //TODO Clean header row headers 
-            var header = json.vals["repo"][i];
-            students.scores[repo][header] = json.vals[repo][i];
-        }
+    {   
+        
+        if(repo != "$TYPE" || repo != "$CATAGORY" || repo != "$FINAL" ||repo != "$QUIZ" ||repo != "$HW" ||repo != "$MIDTERM") 
+            section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
     }
-   /* 
-    #test build loop
-    for (student in student.sscores) 
-    {
-        for (score in students.scores[student])
-            console.log(score +" "+students.scores[student][score]);
-    }
-    return students;
-    */ 
+    //TODO add class prorates
+    return section;
+     
 }
- 
+
+//
+//return object of catagories
+function getCatagories(catagoriesObj)
+{
+    var catagoriesList = {};
+    for (item in catagoiesObj.values)
+        if(item != "$TYPE")
+            catagoriesList[item] = {};
+    return catagoriesList;
+} 
+

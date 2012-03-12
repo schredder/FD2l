@@ -11,7 +11,7 @@ test("Ensure that our function gets called when the file is requested and that w
 			ok( true, "Function Successfully Called" );		
 			
 			equal( typeof data, "string", "Data has been returned");			
-			equal( data.split("\n").length, 32, "Returned data has appropriate number of lines.");
+			equal( data.split("\n").length, 36, "Returned data has appropriate number of lines.");
 			
 			start();
 		};
@@ -39,7 +39,7 @@ test("Ensure that the object returned has repo identifiers as keys, and the appr
 			for (var i in obj.vals) 
 			{
 				equal( obj.vals[i].length, 23, "Split was appropriate");
-				equal( i, obj.vals[i][2], "Keys are correct");
+				equal( i, obj.vals[i][i], "Keys are correct");
 			}
 		};
 		
