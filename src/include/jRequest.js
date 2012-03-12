@@ -57,7 +57,7 @@ function CSVtoJSON(data)
 //Param: student is object map of student data.
 //Param: the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
 //Param: catagories row from csv (assignment groupings can include anything)
-var Student(student,types,catagories)
+var Student = function(student,types,catagories)
 {    
     this.letterGrade = "";
     this.notes = "";
@@ -96,7 +96,7 @@ var Student(student,types,catagories)
 
 //Param: data - required for the passthrough object 
 //returns section object with map object of  students see Student construcor for more info
-function getSection (data)
+function getSection(data)
 {
     var section = {};
     section.students = {};
