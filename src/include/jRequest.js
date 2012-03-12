@@ -19,7 +19,7 @@ function CSVtoJSON(data)
 	rows = data.split("\n");
 
 	ret = new Object();
-	ret.vals = new Array();
+	ret.vals = new Object();
     var header = new Array();
     
 
@@ -36,14 +36,14 @@ function CSVtoJSON(data)
 		// Skip over undefined values for data integrity
 		if (cols[2] != undefined)
         {   
-            //changed to add k/v pairs instead of indexed array
+            //changed to add k/v object instead of array
             if(i==0)
             {
                 header = cols;
             }
             else 
             {
-                var student = new array();
+                var student = {};
                 for (var k=0; k<cols.length;k++)
                     student[header[k]] = col[k];
                 ret.vals[cols[2]] = student;
@@ -53,15 +53,22 @@ function CSVtoJSON(data)
 	return ret;
 }
 
+var Score()
+{
+    ;
+}
 //student object constructor
-//Param: student is array of student data.
-//Param: types is the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
-//Param: catagory row from csv (assingemtn groupings can include anything)
+//Param: student is object map of student data.
+//Param: the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
+//Param: catagories row from csv (assingemtn groupings can include anything)
 var Student(student,types,catagories)
 {   
     var catagoriesList = getCatagories(catagories); 
-    for(data in student.keys)
     this.scores = ;
+    for(key in Object.Keys(student))
+    {
+        
+    }
     this.letterGrade = ;
     this.notes = ;
     this.totalGrade = ;
@@ -75,29 +82,23 @@ var Student(student,types,catagories)
 //is header(assingment neme) and value is score recieved. Contains a row where the headings repo where the headings are equal to the values 
 function getSection (data)
 {
-    var section = new Object();
-    section.students = new Array();
+    var section = {};
+    section.students = {};
 		
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
         section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
     
-    /*#test build loop
-    for (student in student.sscores) 
-    {
-        for (score in students.scores[student])
-            console.log(score +" "+students.scores[student][score]);
-    }*/
     return section;
      
 }
-//return array of catagories
-function getCatagories(catagoriesArray)
+//return object of catagories
+function getCatagories(catagoriesObj)
 {
-    var catagoriesList = new Array();
-    for (item in catagoiesArray.values)
+    var catagoriesList = {};
+    for (item in catagoiesObj.values)
         if(item != "$TYPE")
-            catagoriesList[item] = item;
+            catagoriesList[item] = {};
     return catagoriesList;
 } 
 
