@@ -1,0 +1,22 @@
+.graph2Container {
+    width: 460px;
+}
+
+#menuspan {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+.menuItem{
+    background: #CFCFCF;
+    border-size: 1px;
+    border-style: dotted;
+    border-color: #000;
+    padding: 5px;
+
+}

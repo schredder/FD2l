@@ -1,10 +1,41 @@
 window.onload = function () {
     drawClassGradeBreakdown();
     drawStudentsClassStanding();
+    menu();
+    bindingsMenu();
 };
 
+function menu() {
+    $( "#menu" ).buttonset();
+}
+
+function bindingsMenu() {
+
+
+    $("input[name='menu']").change(function(){
+        if ($("input[name='menu']:checked").val() == 'yb') {
+            $("#yourbreakdown").css("visibility","visible");
+            $("#classbreakdown").css("visibility","collapse");
+            $("#otherBreakdown").css("visibility","collapse");
+        }
+        // Code for handling value 'a'
+        else if ($("input[name='menu']:checked").val() == 'cb') {
+            $("#yourbreakdown").css("visibility","collapse");
+            $("#classbreakdown").css("visibility","visible");
+            $("#otherBreakdown").css("visibility","collapse");
+        }
+        // Code for handling value 'b'
+        else {
+            $("#yourbreakdown").css("visibility","collapse");
+            $("#classbreakdown").css("visibility","collapse");
+            $("#otherBreakdown").css("visibility","visible");
+        }
+        // Code for handling 'c'
+    });
+}
+
 function drawClassGradeBreakdown() {
-    var r = Raphael("classBreakdown"),
+    var r = Raphael("classStanding"),
         pie = r.piechart(200, 200, 100, [10, 20, 13, 32, 5], { legend: ["%%.%% A", "%%.%% B", "%%.%% C", "%%.%% D", "%%.%% F"], legendpos: "east"});
 
     r.text(260, 50, "Class Grade Breakdown").attr({ font: "20px sans-serif" });
@@ -28,7 +59,7 @@ function drawClassGradeBreakdown() {
 }
 
 function drawStudentsClassStanding() {
-    var r = Raphael("classStanding"),
+    var r = Raphael("yourStanding"),
         fin = function () {
             this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
         },

@@ -1,13 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Cache-Control" content="No-Cache" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" tyep="text/css" href="css/jquery-ui-1.8.18.custom.css" />
 
         <!-- jQuery and Plugins -->
-        <script language="javascript" type="text/javascript" src="jQuery.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+        <script language="javascript" type="text/javascript" src="lib/jquery-ui-1.8.18.custom.min.js"></script>
         <!-- End jQuery and Plugins -->
 
         <!-- RaphaelJS + g.RaphaelJS for graphs -->
@@ -20,7 +22,7 @@
         <!-- End RaphaelJS + g.RaphaelJS -->
 
         <!-- Our Stuff -->
-        <script language="javascript" type="text/javascript" src="jRequest.js"></script>
+        <script language="javascript" type="text/javascript" src="include/jRequest.js"></script>
         <script language="javascript" type="text/javascript">
             $(requestCSV("gradesExampleFixed.csv", getStudents))
         </script>
@@ -28,7 +30,16 @@
         <title>FD2L - Grade Viewer</title>
     </head>
     <body>
-        <div class="graphContainer"><div id="classBreakdown"></div></div>
-        <div class="graphContainer"><div id="classStanding"></div></div>
+        <div id="menu">
+            <div id="menuspan">
+                <input type="radio" id="yb" name="menu" value="yb" checked="checked" /><label for="yb">Your Breakdown</label>
+                <input type="radio" id="cb" name="menu" value="cb" /><label for="cb">Class Breakdown</label>
+                <input type="radio" id="other" name="menu" value="other" /><label for="other">Other</label>
+            </div>
+        </div>
+        <div id="yourbreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer"><div id="yourStanding"></div></div><br />
+        <div id="classbreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer"><div id="classStanding"></div></div><br />
+        <div id="otherBreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer">BLAH</div>
+
     </body>
 </html>
