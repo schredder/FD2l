@@ -119,10 +119,10 @@ function getCatagories(catagoriesObj)
 {
     var catagoriesList = {};
     
-    if (typeof catagoriesObj != "object")
-        return {};
+    //if (typeof catagoriesObj != "object")
+    //    return {};
 
-    for (item in Object.keys(catagoriesObj))
+    for (item in catagoriesObj)
         if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "")
             catagoriesList[catagoriesObj[item]] = {};
     return catagoriesList;
