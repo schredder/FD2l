@@ -82,8 +82,8 @@ var Student = function(student,types,catagories)
             this.section = student[key];    
         else if(type[key]==="score")
         {
-            if(catagoies[key]=="total-grade")
-                this.totalGrade=total-grade;
+            if(catagoies[key]=="totalgrade")
+                this.totalGrade=student[key];
             else
             {
                 this.scores[catagories[key]][key]=student[key];
@@ -118,9 +118,13 @@ function getSection(data)
 function getCatagories(catagoriesObj)
 {
     var catagoriesList = {};
+    
+    if (typeof catagoriesObj != "object")
+        return {};
+
     for (item in catagoriesObj)
-        if(item != "$CATAGORY")
-            catagoriesList[item] = {};
+        if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "")
+            catagoriesList[catagoriesObj[item]] = {};
     return catagoriesList;
 } 
 
