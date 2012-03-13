@@ -118,7 +118,7 @@ function getSection(data)
 function getCatagories(catagoriesObj)
 {
     var catagoriesList = {};
-    for (item in catagoiesObj.values)
+    for (item in catagoriesObj)
         if(item != "$TYPE")
             catagoriesList[item] = {};
     return catagoriesList;
