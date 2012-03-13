@@ -68,7 +68,7 @@ var Student = function(student,types,catagories)
 
     //TODO Add set total Grade Function
 
-    for(key in Object.Keys(student))
+    for(key in Object.keys(student))
     {   
         
 
