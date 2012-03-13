@@ -122,7 +122,7 @@ function getCatagories(catagoriesObj)
     if (typeof catagoriesObj != "object")
         return {};
 
-    for (item in catagoriesObj)
+    for (item in Object.keys(catagoriesObj))
         if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "")
             catagoriesList[catagoriesObj[item]] = {};
     return catagoriesList;
