@@ -24,13 +24,13 @@ function CSVtoJSON(data)
     
 
 	// iterate over all of the rows to build the object(must start a 0 so heading is avalible downstream)
-	for (i = 0; i < rows.length; i++)
+	for (var i = 0; i < rows.length; i++)
 	{
 		// Split on ", " in CSV data we received
 		cols = rows[i].split(",", rows[0].split("\",\"").length);
 
 		// Remove quotes out of all underlying elements
-		for (j = 0; j < cols.length; j++)
+		for (var j = 0; j < cols.length; j++)
 			cols[j] = cols[j].replace(/\"/g, "");
         
 		// Skip over undefined values for data integrity
@@ -68,7 +68,7 @@ var Student = function(student,types,catagories)
 
     //TODO Add set total Grade Function
 
-    for(key in Object.keys(student))
+    for(var key in student)
     {   
         
 
