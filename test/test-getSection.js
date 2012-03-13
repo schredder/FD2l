@@ -1,6 +1,6 @@
 //Not functional
 
-module("Get Students data object test");
+module("Get Section data object test");
 
 test("somthing", 
 	function() 
@@ -12,7 +12,7 @@ test("somthing",
 		{			
 			ok( true, "Function Successfully Called" );		
 			
-			equal( typeof data, "string", "Data has been returned");			
+			equal( typeof object, "string", "Data has been returned");			
 			equal( data.split("\n").length, 87, "Returned data has appropriate number of lines.");
 			
 			start();

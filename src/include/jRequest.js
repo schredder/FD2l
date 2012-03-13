@@ -119,7 +119,7 @@ function getCatagories(catagoriesObj)
 {
     var catagoriesList = {};
     for (item in catagoriesObj)
-        if(item != "$TYPE")
+        if(item != "$CATAGORY")
             catagoriesList[item] = {};
     return catagoriesList;
 } 
