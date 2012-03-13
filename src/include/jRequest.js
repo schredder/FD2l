@@ -45,7 +45,7 @@ function CSVtoJSON(data)
             {
                 var student = {};
                 for (var k=0; k<cols.length;k++)
-                    student[header[k]] = col[k];
+                    student[header[k]] = cols[k];
                 ret.vals[cols[2]] = student;
             }
         }
