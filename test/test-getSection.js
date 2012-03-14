@@ -36,8 +36,8 @@ test("Test student object creation", function() {
     var emptyStudent = { letterGrade:"",notes:"",totalGrade:"-1",section:"",repo:"",scores:{}};
     var fillStudent = { letterGrade:"A",notes:"lovely test",totalGrade:"90.5",section:"cs1",repo:"2k4",
                          scores:{quiz:{q1:"9",q2:"6",q3:"5",q4:"",q5:"7"},
-                                 midterm{m1:"7",m2:"8",m3:"6",m4:"5"},
-                                 final:{final:32},
+                                 midterm:{m1:"7",m2:"8",m3:"6",m4:"5"},
+                                 final:{final:"32"},
                                  hw:{hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7"}}};
     
     expect(2);
