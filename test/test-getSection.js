@@ -23,7 +23,7 @@ asyncTest("somthing",
 //TODO test Student object creation
 module("Student(student,types,catagories) test");
 test("Test student object creation", function() {
-    var emptyObj = {}
+    var emptyObj = {};
     var testStudent = {section:"cs1",magic:"cs170",repo:"2k4",Total:"90.5",Grade:"A",q1:"9",q2:"6",
                    q3:"5",q4:"",q5:"7",m1:"7",m2:"8",m3:"6",m4:"5",final:"32",
                    hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7",HWFeedback:"lovely test"};
@@ -34,7 +34,7 @@ test("Test student object creation", function() {
                    q3:"quiz",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
                    hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
     var emptyStudent = { letterGrade:"",notes:"",totalGrade:-1,section:"",repo:"",scores:{}};
-    var fillStudent = { letterGrade:"A",notes:"lovely test",totalGrade:"90.5",section:"cs1",repo:"2k4",
+    var filledStudent = { letterGrade:"A",notes:"lovely test",totalGrade:"90.5",section:"cs1",repo:"2k4",
                          scores:{quiz:{q1:"9",q2:"6",q3:"5",q4:"",q5:"7"},
                                  midterm:{m1:"7",m2:"8",m3:"6",m4:"5"},
                                  final:{final:"32"},
@@ -49,7 +49,7 @@ test("Test student object creation", function() {
 //TODO getSection
 module("getCatagories() test");
 test("Test getCatagories function", function() {
-    var emptyObj = {}
+    var emptyObj = {};
     var testObj = {section:"",magic:"",repo:"$CATAGORY",Total:"totalgrade",Grade:"",q1:"quiz",q2:"quiz",
                    q3:"quiz",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
                    hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
