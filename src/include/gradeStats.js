@@ -8,7 +8,7 @@ function gradeMean(assignment, gradeBook) {
    var sum = 0;
 
    for (var repo in gradeBook.students) {
-      sum += gradeBook.students[repo][assignment][pointsEarned];
+      sum += gradeBook[students][repo][assignment][pointsEarned];
       classSize++;
    };
 
@@ -23,7 +23,7 @@ function gradeMean(assignment, gradeBook) {
 function gradeMedian(assignment, gradeBook) {
    var grades = [];
    for (var repo in gradeBook.students) {
-      grades.push(gradeBook.students[repo][assignment][pointsEarned]);
+      grades.push(gradeBook[students][repo][assignment][pointsEarned]);
    };
 
    return getMedian(grades);
@@ -38,7 +38,7 @@ function gradeRange(assignment, gradeBook) {
    var grades = [];
 
    for (var repo in gradeBook.students) {
-      grades.push(gradeBook.students[repo][assignment][pointsEarned]); 
+      grades.push(gradeBook[students][repo][assignment][pointsEarned]); 
    };
 
    return getRange(grades);
@@ -52,7 +52,7 @@ function classMedian(gradeBook) {
    var grades = [];
 
    for (var repo in gradeBook.students) { 
-      grades.push(gradeBook.students[repo][total][pointsEarned]);
+      grades.push(gradeBook[students][repo][total][pointsEarned]);
    };
 
    return getMedian(grades);
@@ -64,7 +64,7 @@ function classMedian(gradeBook) {
 // return:   number - median grade for a particular column
 function classRange(gradeBook) {
    for (var repo in gradeBook.students) {
-      grades.push(gradeBook.students[repo][total][pointsEarned]);
+      grades.push(gradeBook[students][repo][total][pointsEarned]);
    }
    
    return getRange(grades);
