@@ -57,11 +57,11 @@ function CSVtoJSON(data)
 //Param: student is object map of student data.
 //Param: the types row from import (must be score,note,lettergrade,section or $TYPE(only repo cell))
 //Param: catagories row from csv (assignment groupings can include anything)
-var Student = function(student,types,catagories)
+function Student (student,type,catagories)
 {    
     this.letterGrade = "";
-    this.notes = "";
-    this.totalGrade = -1;
+    this.note = "";
+    this.totalGrade = "-1";
     this.section = "";
     this.repo = "";
     this.scores = getCatagories(catagories);
@@ -77,12 +77,12 @@ var Student = function(student,types,catagories)
         else if(type[key]==="note")
             this.note = student[key];    
         else if(type[key]==="lettergrade")
-            this.LetterGrade = student[key];    
+            this.letterGrade = student[key];    
         else if(type[key]==="section")
             this.section = student[key];    
         else if(type[key]==="score")
         {
-            if(catagoies[key]=="totalgrade")
+            if(catagories[key]=="totalgrade")
                 this.totalGrade=student[key];
             else
             {
@@ -106,7 +106,7 @@ function getSection(data)
     {   
         
         if(repo != "$TYPE" || repo != "$CATAGORY" || repo != "$FINAL" ||repo != "$QUIZ" ||repo != "$HW" ||repo != "$MIDTERM") 
-            section.students[repo] = new Student(json[repo],json["$TYPES"],json["$CATAGORIES"]);
+            section.students[repo] = new Student(json.vals[repo],json.vals["$TYPES"],json.vals["$CATAGORIES"]);
     }
     //TODO add class prorates
     return section;
@@ -123,6 +123,7 @@ function getCatagories(catagoriesObj)
     //    return {};
     //var keys = Object.keys(catagoriesObj);
     for (var item in catagoriesObj)
+
         if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "")
             catagoriesList[catagoriesObj[item]] = {};
     return catagoriesList;

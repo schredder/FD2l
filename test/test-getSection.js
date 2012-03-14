@@ -33,15 +33,24 @@ test("Test student object creation", function() {
     var testCatagories = {section:"",magic:"",repo:"$CATAGORY",Total:"totalgrade",Grade:"",q1:"quiz",q2:"quiz",
                    q3:"quiz",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
                    hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
-    var emptyStudent = { letterGrade:"",notes:"",totalGrade:-1,section:"",repo:"",scores:{}};
-    var filledStudent = { letterGrade:"A",notes:"lovely test",totalGrade:"90.5",section:"cs1",repo:"2k4",
-                         scores:{quiz:{q1:"9",q2:"6",q3:"5",q4:"",q5:"7"},
-                                 midterm:{m1:"7",m2:"8",m3:"6",m4:"5"},
-                                 final:{final:"32"},
-                                 hw:{hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7"}}};
+    var emptyStudent = { letterGrade:"",note:"",totalGrade:"-1",section:"",repo:"",scores:{}};
+    var filledStudent = {
+                            letterGrade:"A",
+                            note:"lovely test",
+                            totalGrade:"90.5",
+                            section:"cs1",
+                            repo:"2k4",
+                            scores:
+                            {   
+                                quiz:{q1:"9",q2:"6",q3:"5",q4:"",q5:"7"},
+                                midterm:{m1:"7",m2:"8",m3:"6",m4:"5"},
+                                final:{final:"32"},
+                                hw:{hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7"}
+                            }
+                        };
     
-    expect(2);
-    deepEqual( new Student(emptyObj,emptyObj,emptyObj),emptyStudent,"Student object empty in empty out " );
+    //expect(2);
+    deepEqual( new Student(emptyObj,emptyObj,emptyObj),emptyStudent,"Student object empty in empty out ");
     deepEqual( new Student(testStudent,testTypes,testCatagories),filledStudent,"Test new Student call with dummy data");
 });
 
