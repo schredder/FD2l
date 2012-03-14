@@ -1,26 +1,25 @@
 //Some functional
-//TODO test test getCatagories
 //module("getSection() data object test");
-/*
-asyncTest("somthing", 
-	function() 
-	{		
-		expect(3);
+
+
+//TODO test test getCatagories
+module("Async getSection(data) call");
+asyncTest("Tests getSection parsing of data", function(){		
+	fn = function(data)
+	{			
+        start();
+	    var section = getSection(data);
+
+        equal( typeof section, "object", "Section Object returned");
+        equal( typeof section.students, "object", "Student object  has been returned");
+	
+		//equal(			
+    };
 		
-		fn = function(data)
-		{			
-			ok( true, "Function Successfully Called" );		
-			
-			equal( typeof object, "string", "Data has been returned");			
-			equal( data.split("\n").length, 87, "Returned data has appropriate number of lines.");
-			
-			start();
-		};
-		
-		requestCSV("gradesExample.csv", fn);
-	}
-);*/
-//TODO test Student object creation
+	requestCSV("gradesExampleFixed.csv", fn);
+});
+
+// test Student object creation
 module("Student(student,types,catagories) test");
 test("Test student object creation", function() {
     var emptyObj = new Object();
@@ -59,7 +58,7 @@ test("Test student object creation", function() {
 });
 
 
-//TODO getSection
+//test getSection
 module("getCatagories() test");
 test("Test getCatagories function", function() {
     var emptyObj = {};

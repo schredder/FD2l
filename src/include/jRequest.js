@@ -100,15 +100,15 @@ function getSection(data)
 {
     var section = {};
     section.students = {};
-		
+	
     var json = CSVtoJSON(data);
     for (var repo in json.vals )
     {   
-        
-        if(repo != "$TYPE" || repo != "$CATAGORY" || repo != "$FINAL" ||repo != "$QUIZ" ||repo != "$HW" ||repo != "$MIDTERM") 
-            section.students[repo] = new Student(json.vals[repo],json.vals["$TYPES"],json.vals["$CATAGORIES"]);
+        //console.log(json.vals[repo]);
+       if(repo != "$TYPE" && repo != "$CATAGORY" && repo != "$FINAL" && repo != "$QUIZ" && repo != "$HW" && repo != "$MIDTERM") 
+            section.students[repo] = new Student(json.vals[repo],json.vals["$TYPE"],json.vals["$CATAGORY"]);
     }
-    //TODO add class prorates
+    //TODO add class prorates*/
     return section;
      
 }
