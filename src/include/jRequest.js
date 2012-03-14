@@ -82,7 +82,7 @@ function Student (student,type,catagories)
             this.section = student[key];    
         else if(type[key]==="score")
         {
-            if(catagories[key]=="totalgrade")
+            if(catagories[key]==="totalgrade")
                 this.totalGrade=student[key];
             else
             {
@@ -124,7 +124,7 @@ function getCatagories(catagoriesObj)
     //var keys = Object.keys(catagoriesObj);
     for (var item in catagoriesObj)
 
-        if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "")
+        if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "" && catagoriesObj[item]!="totalgrade")
             catagoriesList[catagoriesObj[item]] = {};
     return catagoriesList;
 } 
