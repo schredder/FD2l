@@ -1,87 +1,73 @@
-// Calculates grade mean for a particular column
-// params:   column - name of column to calculate from
-//         students - student students
-// assert: column is homework/quiz/exam type, NOT "$" prefixed field
-// assert: students object conforms to project standard
-// return:   number - mean grade for a particular column
-function gradeMean(column, students) {
-	// TODO input checking
+// Calculates grade mean for a particular assignment
+// params: assignment - name of column to calculate from
+//          gradeBook - grade book object
+// assert: gradeBook conforms to project standard
+// return: number - mean grade for a particular column
+function gradeMean(assignment, gradeBook) {
    var classSize = 0;
    var sum = 0;
 
-   for (var id in students) {
-   	if (!id.match(/^\$/)) {
-	      sum += students[id][column];
-			classSize++;
-   	};
+   for (var repo in gradeBook.students) {
+      sum += gradeBook.students[repo][assignment][pointsEarned];
+      classSize++;
    };
 
-	return sum / classSize;
+   return sum / classSize;
 };
 
-// Calculates grade median for a particular column
-// params:   column - name of column to calculate from
-//         students - student students
-// assert: column is homework/quiz/exam type, NOT "$" prefixed field
-// assert: students object conforms to project standard
-// return:   number - median grade for a particular column
-function gradeMedian(column, students) {
-	// TODO input checking
+// Calculates grade median for a particular assignment
+// params: assignment - name of column to calculate from
+//          gradeBook - grade book object
+// assert: gradeBook conforms to project standard
+// return: number - median grade for a particular column
+function gradeMedian(assignment, gradeBook) {
    var grades = [];
-   for (var id in students) {
-   	if (!id.match(/^\$/)) {
-   		grades.push(students[id][column]);
-   	};
+   for (var repo in gradeBook.students) {
+      grades.push(gradeBook.students[repo][assignment][pointsEarned]);
    };
 
-	return getMedian(grades);
+   return getMedian(grades);
 };
 
-// Calculates grade range for a particular column
-// params:   column - name of column to calculate from
-//         students - student students
-// assert: column is homework/quiz/exam type, NOT "$" prefixed field
-// assert: students object conforms to project standard
+// Calculates grade range for a particular assignment
+// params: assignment - name of column to calculate from
+//          gradeBook - grade book object
+// assert: gradeBook conforms to project standard
 // return:   number - grade range for a particular column
-function gradeRange(column, students) {
-	// TODO input checking
+function gradeRange(assignment, gradeBook) {
    var grades = [];
 
-   for (var id in students) {
-      if (!id.match(/^\$/)) { grades.push(students[id][column]); };
+   for (var repo in gradeBook.students) {
+      grades.push(gradeBook.students[repo][assignment][pointsEarned]); 
    };
 
-	return getRange(grades);
+   return getRange(grades);
 };
 
 // Calculates grade median for the whole class
-// params: students - student students
-// assert: students object conforms to project standard
+// params: gradeBook - grade book object
+// assert: gradeBook conforms to project standard
 // return:   number - median grade for a particular column
-function classMedian(students) {
-	// TODO input checking
-   var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
+function classMedian(gradeBook) {
    var grades = [];
 
-   for (var id in students) { 
-      if (!id.match(/^\$/)) { grades.push(students[id][totalKey]); };
+   for (var repo in gradeBook.students) { 
+      grades.push(gradeBook.students[repo][total][pointsEarned]);
    };
 
-	return getMedian(grades);
+   return getMedian(grades);
 };
 
 // Calculates grade range for the whole class
-// params: students - student students
-// assert: students object conforms to project standard
-// assert: final grade is a %, both min grade and max grade are >= 0
+// params: gradeBook - grade book object
+// assert: gradeBook conforms to project standard
 // return:   number - median grade for a particular column
-function classRange(students) {
-	// TODO input checking
-   var totalKey = "TOTAL(100%)"; // Either change this, or define constants.
-   var minGrade = "$MIN";
-   var maxGrade = "$MAX";
-
-	return students[maxGrade][totalKey] - students[minGrade][totalKey];
+function classRange(gradeBook) {
+   for (var repo in gradeBook.students) {
+      grades.push(gradeBook.students[repo][total][pointsEarned]);
+   }
+   
+   return getRange(grades);
 };
 
 
@@ -99,14 +85,14 @@ function getMedian(nums) {
    
    // If array has even number of elements, median is avg of two middle elements
    if (numsCopy.length %2 == 0) {
-   	var midHi = numsCopy[Math.ceil((numsCopy.length-1)/2)];
-	   var midLo = numsCopy[Math.floor((numsCopy.length-1)/2)];
-	   median = (midHi + midLo) / 2;
-	}
-	// Else, if array has odd number of elements, median is middle element
-	else { median = numsCopy[Math.floor(numsCopy.length / 2)]; };
+      var midHi = numsCopy[Math.ceil((numsCopy.length-1)/2)];
+      var midLo = numsCopy[Math.floor((numsCopy.length-1)/2)];
+      median = (midHi + midLo) / 2;
+   }
+   // Else, if array has odd number of elements, median is middle element
+   else { median = numsCopy[Math.floor(numsCopy.length / 2)]; };
 
-	return median;
+   return median;
 };
 
 // Returns the range of an array of numbers
@@ -121,5 +107,5 @@ function getRange(nums) {
    numsCopy.sort(function(a,b){ return a-b; });
    var last = numsCopy.length - 1;
 
-	return numsCopy[last] - numsCopy[0];
+   return numsCopy[last] - numsCopy[0];
 }
