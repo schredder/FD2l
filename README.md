@@ -6,6 +6,10 @@ request to avoid any complicated server side configuration.
 
 For more information please dont hesitate to reach out to one of the team
 members.
+## Testing Link
+    http://kuncheff.com:82/job/fd2l/ws/test/index.html
+    http://kuncheff.com:82/job/fd2l/ws/test/primary.html
+    http://kuncheff.com:82/job/fd2l/ws/test/minify.html
 
 ## Folder Overview
 
