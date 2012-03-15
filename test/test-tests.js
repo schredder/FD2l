@@ -38,13 +38,14 @@ test("Ensure that the object returned has repo identifiers as keys, and the appr
             var isKeyed = true;
 			for (var i in obj.vals) 
 			{
+				equal( Object.keys(obj.vals[i]).length, 23, "Split was appropriate");
+				equal( i, obj.vals[i]["repo"], "Keys are correct");
                 //reducing test noise
-				//equal( Object.keys(obj.vals[i]).length, 23, "Split was appropriate");
-				//equal( i, obj.vals[i]["repo"], "Keys are correct");
-                if ( Object.keys(obj.vals[i]).length != 23)
+                /*if ( Object.keys(obj.vals[i]).length != 23)
                     isSplit=false;
                 if (i !== obj.vals[i]["repo"])
                     isKeyed=false;
+                */
 			}
             ok(isSplit, "Split was appropriate")
             ok(isKeyed, "Keys are correct")
