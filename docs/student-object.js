@@ -7,7 +7,12 @@
  *
  * Everything is assumed to work within the constraints set by csv-standards.
  **************************/
-Sectionstudent  = {
+Section{ //jilled in by getRequest
+        students{//...}//object container of students indexed by repo id see below for student deffinition
+        //TODO Add prorates somewhere
+        //TODO Add Gradebook -like object per erics suggestino
+        }
+student  = {
                 letterGrade:"A",
                 note:"lovely test",
                 totalGrade:"90.5",
