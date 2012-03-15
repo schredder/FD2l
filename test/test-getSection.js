@@ -9,11 +9,29 @@ asyncTest("Tests getSection parsing of data", function(){
 	{			
         start();
 	    var section = getSection(data);
+        var emptyScores = {quiz:{},midterm:{},final:{},hw:{}};
 
         equal( typeof section, "object", "Section Object returned");
         equal( typeof section.students, "object", "Student object  has been returned");
-	
-		//equal(			
+        
+        equal(Object.keys(section.students).length,29,"Proper Number of student Objects");
+        for(var key in section.students)
+        {
+            deepEqual(Object.keys(emptyScores),Object.keys(section.students[key].scores),"Correct scores keys");
+            for(var score in section.students[key].scores)
+            {   
+                var asignment = section.students[key].scores[score];
+                if(score=="quiz")
+                    ok(Object.keys(asignment).length == 5,"quiz keys ok");
+                else if(score=="midterm")
+                    ok(Object.keys(asignment).length == 4,"midterm keys ok");
+                else if(score=="final")
+                    ok(Object.keys(asignment).length == 1,"final keys ok");
+                else if(score=="hw")
+                    ok(Object.keys(asignment).length == 7,"hw keys ok");
+            }
+        }
+        	
     };
 		
 	requestCSV("gradesExampleFixed.csv", fn);

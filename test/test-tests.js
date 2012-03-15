@@ -12,7 +12,6 @@ test("Ensure that our function gets called when the file is requested and that w
 			
 			equal( typeof data, "string", "Data has been returned");			
 			equal( data.split("\n").length, 37, "Returned data has appropriate number of lines.");
-			
 			start();
 		};
 		
