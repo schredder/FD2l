@@ -2,8 +2,8 @@
 //module("getSection() data object test");
 
 
-//TODO test test getCatagories
-module("Async getSection(data) call");
+//data Structure tests 
+module("Async getSection(data) call test object structure");
 asyncTest("Tests getSection parsing of data", function(){		
 	fn = function(data)
 	{			
@@ -13,7 +13,7 @@ asyncTest("Tests getSection parsing of data", function(){
 
         equal( typeof section, "object", "Section Object returned");
         equal( typeof section.students, "object", "Student object  has been returned");
-        
+        //TODO test missing rows
         equal(Object.keys(section.students).length,29,"Proper Number of student Objects");
         for(var key in section.students)
         {
@@ -35,6 +35,36 @@ asyncTest("Tests getSection parsing of data", function(){
     };
 		
 	requestCSV("gradesExampleFixed.csv", fn);
+});
+
+//check bad data fields
+module("Async getSection(data) Test Data integrity");
+asyncTest("Tests getSection parsing of data", function(){
+    fn = function(data)
+    {  
+        start();
+        var section = getSection(data);
+
+        for(var key in section.students)
+        {  
+            for(var score in section.students[key].scores)
+            {  
+                var asignments = section.students[key].scores[score];
+                    for(var a in asignments)
+                    {
+                        if(a==="")
+                            ok(true,"OK - Empty value score");
+                        else if(typeof a === "number")
+                            ok(true, "OK - Number result")
+                        else
+                            ok(false, "Non number Value")
+                    }
+            }
+        }
+   
+    };
+   
+    requestCSV("gradesExampleBadData.csv", fn);
 });
 
 // test Student object creation
