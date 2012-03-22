@@ -37,7 +37,7 @@ asyncTest("Tests getSection parsing of data", function(){
 	requestCSV("gradesExampleFixed.csv", fn);
 });
 
-//check bad data fields
+//check bad data fields (Josh Inch Test)
 module("Async getSection(data) Test Data integrity");
 asyncTest("Tests getSection parsing of data", function(){
     fn = function(data)
@@ -52,14 +52,20 @@ asyncTest("Tests getSection parsing of data", function(){
                 var asignments = section.students[key].scores[score];
                     for(var a in asignments)
                     {
-                        if(a==="")
+                        if(asignments[a]==="")
                             ok(true,"OK - Empty value score");
-                        else if(typeof a === "number")
+                        else if(typeof asignments[a] === "number")
                             ok(true, "OK - Number result")
                         else
                             ok(false, "Non number Value")
                     }
             }
+            //TODO: letterGrade
+            //TODO: note
+            //TODO: totalGrade
+            //TODO: section
+            //TODO: repo
+
         }
    
     };
