@@ -3,6 +3,8 @@ window.onload = function () {
     drawStudentsClassStanding();
     menu();
     bindingsMenu();
+	$("#classbreakdown").css("display","none");
+    $("#otherBreakdown").css("display","none");
 };
 
 function menu() {
@@ -14,21 +16,21 @@ function bindingsMenu() {
 
     $("input[name='menu']").change(function(){
         if ($("input[name='menu']:checked").val() == 'yb') {
-            $("#yourbreakdown").css("visibility","visible");
-            $("#classbreakdown").css("visibility","collapse");
-            $("#otherBreakdown").css("visibility","collapse");
+            $("#yourbreakdown").css("display","inline-block");
+            $("#classbreakdown").css("display","none");
+            $("#otherBreakdown").css("display","none");
         }
         // Code for handling value 'a'
         else if ($("input[name='menu']:checked").val() == 'cb') {
-            $("#yourbreakdown").css("visibility","collapse");
-            $("#classbreakdown").css("visibility","visible");
-            $("#otherBreakdown").css("visibility","collapse");
+            $("#yourbreakdown").css("display","none");
+            $("#classbreakdown").css("display","inline-block");
+            $("#otherBreakdown").css("display","none");
         }
         // Code for handling value 'b'
         else {
-            $("#yourbreakdown").css("visibility","collapse");
-            $("#classbreakdown").css("visibility","collapse");
-            $("#otherBreakdown").css("visibility","visible");
+            $("#yourbreakdown").css("display","none");
+            $("#classbreakdown").css("display","none");
+            $("#otherBreakdown").css("display","inline-block");
         }
         // Code for handling 'c'
     });

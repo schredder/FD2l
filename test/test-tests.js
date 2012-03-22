@@ -71,3 +71,20 @@ test("Ensure that the assignment list creates a dropdown of assignments",
 		equal(getCatagories(testObj), "<SELECT NAME='assignment_list'><OPTION VALUE='quiz1'>quiz1</OPTION><OPTION VALUE='quiz2'>quiz2</OPTION><OPTION VALUE='quiz3'>quiz3</OPTION><OPTION VALUE='quiz'>quiz</OPTION>		<OPTION VALUE='midterm'>midterm</OPTION><OPTION VALUE='final'>final</OPTION><OPTION VALUE='hw'>hw</OPTION></SELECT>", "Filled Dropdown Generated Properly" );
 	}
 );
+
+module ("Frontend Generation");
+
+test("Ensure data needed for the front end exists.",
+	function()
+	{
+		var testObj = {section:"",magic:"",repo:"$CATAGORY",Total:"totalgrade",Grade:"",q1:"quiz1",q2:"quiz2",
+					   q3:"quiz3",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
+					   hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
+					   
+		expect(4);
+		equal(getSections(testObj), ["sec1","sec2","sec3"]);
+		equal(getCategories(getSections(testObj)[0]), ["quiz","hw","mditerm"]);
+		equal(getAssignmentList(getCategories(getSections(testObj)[0])[0]), ["quiz1","quiz2","hw2","hw3"]);
+		equal(getAssignmentScore(getAssignmentList(getCategories(getSections(testObj)[0])[0])[0]), 10);
+	}
+);
