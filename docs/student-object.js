@@ -33,7 +33,8 @@ Section: { // filled in by getRequest
 
    classStats: { // Filled by Eric (gradeStats.js)
       averageGrade = typeof number; // percentage
-      medianGrade = typeof number; // percentage
+       medianGrade = typeof number; // percentage
+        gradeRange = typeof number; // percentage
    };
 
    assignmentInfo: { // Contains prorates and any other assignment specific data.

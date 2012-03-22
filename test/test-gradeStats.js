@@ -1,5 +1,7 @@
-// These tests will later be expanded to include actual test data once 
-// we know what kind of data we're dealing with.
+/* These tests will later be expanded to include actual test data once 
+ * we know what kind of data we're dealing with.
+ */
+
 module("Grade Statistics Generation");
 
 // Building a dummy student array for testing
@@ -32,7 +34,7 @@ test("Test assignment mean calculations",
       var assignments = ["hw1", "hw2", "m1", "m2"];
       var col;
 
-      // expected response of first test (results of following tests are incremented):
+      // expected response of first test (value incremented for following tests):
       var expected = 18; 
 
       for (assignment in assignments) {
@@ -47,17 +49,18 @@ test("Test assignment mean calculations",
 
 test("Test assignment median calculations", 
    function() {
-      var col = "hw1";
-      deepEqual( gradeMedian(col, students), 18, "Calculating \"" + col + "\" grade median." );
-      
-      col = "hw2";
-      deepEqual( gradeMedian(col, students), 19, "Calculating \"" + col + "\" grade median." );
-      
-      col = "m1";
-      deepEqual( gradeMedian(col, students), 20, "Calculating \"" + col + "\" grade median." );
-      
-      col = "m2";
-      deepEqual( gradeMedian(col, students), 21, "Calculating \"" + col + "\" grade median." );
+      // tested assignment names:
+      var assignments = ["hw1", "hw2", "m1", "m2"];
+      var col;
+
+      // expected response of first test (value incremented for following tests):
+      var expected = 18; 
+
+      for (assignment in assignments) {
+         col = assignments[assignment];
+         deepEqual( gradeMedian(col, students), expected++, // expected value is incremented
+                    "Calculating \"" + col + "\" grade average." );
+      }
 
       ok( isNaN( gradeMedian("dne", students)), "Testing non-existant assignment.");
    }
@@ -65,17 +68,18 @@ test("Test assignment median calculations",
 
 test("Test assignment range calculations", 
    function() {
-      var col = "hw1";
-      deepEqual( gradeRange(col, students), 4, "Calculating \"" + col + "\" grade range." );
-      
-      col = "hw2";
-      deepEqual( gradeRange(col, students), 4, "Calculating \"" + col + "\" grade range." );
-      
-      col = "m1";
-      deepEqual( gradeRange(col, students), 4, "Calculating \"" + col + "\" grade range." );
-      
-      col = "m2";
-      deepEqual( gradeRange(col, students), 4, "Calculating \"" + col + "\" grade range." );
+      // tested assignment names:
+      var assignments = ["hw1", "hw2", "m1", "m2"];
+      var col;
+
+      // expected response of all tests
+      var expected = 4; 
+
+      for (assignment in assignments) {
+         col = assignments[assignment];
+         deepEqual( gradeRange(col, students), expected, // expected value is incremented
+                    "Calculating \"" + col + "\" grade average." );
+      }
 
       ok( isNaN( gradeRange("dne", students)), "Testing non-existant assignment.");
    }
@@ -99,11 +103,69 @@ test("Test \"primitive\" median function calculations",
       // primitive
       deepEqual( getMedian([0,1,2,3,4,5,15]), 3, "Testing getMedian() with odd num of elements." );
       deepEqual( getMedian([0,1,2,3,4,15]), 2.5, "Testing getMedian() with even num of elements." );
+      deepEqual( getMedian([0,1,2,3,4,15]), 2.5, "Testing getMedian() with even num of elements." );
+      ok( isNaN( getMedian([0,1,2,3,4,"kitty",15])), "getMedian() returns NaN with a string." );
+      ok( isNaN( getMedian([0,1,2,"",4,15])), "getMedian() returns NaN with a string." );
+      ok( isNaN( getMedian([0,1,2,3,true,15])), "getMedian() returns NaN with a bool." );
    }
 );
 
 test("Test \"primitive\" range function calculations", 
    function() {
       deepEqual( getRange([0,1,2,3,4,5,15]), 15, "Testing getRange()." );
+      ok( isNaN( getRange([0,1,2,3,"4",5,15])), "getRange() returns NaN with a string." );
+      ok( isNaN( getRange([0,1,2,3,true,5,15])), "getRange() returns NaN with a bool." );
+   }
+);
+
+
+
+/* Testing object pipeline, adding statistics data to students object */
+
+module("Grade Statistics Population");
+
+// TODO: Generate dummy students/section object for below tests
+var section = {
+   students: {
+      "2k4": {
+         letterGrade: "",
+         note: "lovely test",
+         totalGrade: "",
+         section: "cs1",
+         repo: "2k4",
+         scores: {
+            quizzes: { q1: 9, q2: 6, q3: 5, q4: "", q5: "7" },
+            midterm: { m1:"7",m2:"8",m3:"6",m4:"5" },
+            finalExam: { finalExam:"32" },
+            hw: { hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7" }
+         }
+      }
+   }
+};
+
+test("Test adding class-wide statistics",
+   function() {
+      addClassStats(students);
+
+      deepEqual( section.classStats.averageGrade, 75, 
+                 "Testing average grade is calculated and in the right place." );
+      deepEqual( section.classStats.medianGrade, 70, 
+                 "Testing median grade is calculated and in the right place." );
+      deepEqual( section.classStats.gradeRange, 75, 
+                 "Testing grade range is calculated and in the right place." );
+   }
+);
+
+test("Test adding per-student statistics",
+   function() {
+   // Repeat this for some number of students. Add strage data, etc.
+      var repo = "2k4";
+      addTotalAndLetterGrades(repo, students);
+
+      deepEqual( section.students[repo].totalGrade, 90.5,
+                 "Testing percentage grade is calculated and put in the right place." );
+      deepEqual( section.students[repo].letterGrade, "A",
+                 "Testing letter grade is calculated and put in the right place." );
+
    }
 );
