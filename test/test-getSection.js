@@ -60,11 +60,11 @@ asyncTest("Tests getSection parsing of data", function(){
                             ok(false, "Non number Value")
                     }
             }
-            //TODO: letterGrade
-            //TODO: note
-            //TODO: totalGrade
-            //TODO: section
-            //TODO: repo
+            equal( typeof section.students[key]["letterGrade"],"string", "Student Lettergrade"); 
+            equal( typeof section.students[key]["note"],"string", "Student note"); 
+            equal( typeof section.students[key]["totalGrade"],"number", "Student totalGrade"); 
+            equal( typeof section.students[key]["section"],"string", "Student section"); 
+            equal( typeof section.students[key]["repo"],"string", "Student repo"); 
 
         }
    
