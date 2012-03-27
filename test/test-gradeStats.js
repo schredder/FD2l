@@ -4,32 +4,79 @@
 
 module("Grade Statistics Generation");
 
-// Building a dummy student array for testing
-// TODO: update this for new students data format
-var students = {};
-var stu = ["a", "b", "c", "d", "e", "$MIN", "$MAX"];
-var ass = ["TOTAL(100%)", "hw1", "hw2", "m1", "m2"];
-
-for (var i = 0; i < stu.length; i++) {
-   students[stu[i]] = {};
-   students[stu[i]][ass[0]] = 75;
-   for (var j = 1; j < ass.length; j++) {
-      if (stu[i] == "$MIN") { students[stu[i]][ass[j]] = 0; }
-      else if (stu[i] == "$MAX") { students[stu[i]][ass[j]] = 25; }
-      else { students[stu[i]][ass[j]] = 15+i+j; };
-   };
-};
-/* What this looks like:
-   a	b	c	d	e	$i	$a	AVG	M	R
-   16	17	18	19	20	0	25	18		18	4
-   17	18	19	20	21	0	25	19		19	4
-   18	19	20	21	22	0	25	20		20	4
-   19	20	21	22	23	0	25	21		21	4
-   20	21	22	23	24	0	25	22		22	4
-*/ 
 
 test("Test assignment mean calculations", 
    function() {
+      // Building a dummy student array for testing
+      // TODO: update this for new students data format
+      var section = {
+         students: {
+            "a": { 
+               scores: {
+                  "hw": { },
+                  "midterm": { }
+               }
+            "b": { 
+               scores: {
+                  "hw": { },
+                  "midterm": { }
+               }
+            "c": { 
+               scores: {
+                  "hw": { },
+                  "midterm": { }
+               }
+            "d": { 
+               scores: {
+                  "hw": { },
+                  "midterm": { }
+               }
+            "e": { 
+               scores: {
+                  "hw": { },
+                  "midterm": { }
+               }
+         }
+      };
+      var hws = ["hw1", "hw2"];
+      var midterms = ["m1", "m2"];
+      
+      for (var i = 0; i < stu.length; i++) {
+         section.students[stu[i]] = {
+            scores: {}
+         };
+      
+         section.students[stu[i]].scores["hw"] = {};
+         for (var j = 0; i < hws.length; i++) {
+            section.students[stu[i]].scores["hw"][hws[j]] = 15+j;
+         }
+      
+         section.students[stu[i]].scores["midterm"] = {};
+         for (var j = 0; i < midterms.length; i++) {
+            section.students[stu[i]].scores["hw"][midterms[j]] = 15+j;
+         }
+      }
+
+      /*
+      for (var i = 0; i < stu.length; i++) {
+         section.students[stu[i]] = {};
+         section.students[stu[i]].scores["hw"] = 75;
+         for (var j = 1; j < ass.length; j++) {
+            if (stu[i] == "$MIN") { students[stu[i]][ass[j]] = 0; }
+            else if (stu[i] == "$MAX") { students[stu[i]][ass[j]] = 25; }
+            else { students[stu[i]][ass[j]] = 15+i+j; };
+         };
+      };
+      
+      What this looks like:
+         a	b	c	d	e	$i	$a	AVG	M	R
+         16	17	18	19	20	0	25	18		18	4
+         17	18	19	20	21	0	25	19		19	4
+         18	19	20	21	22	0	25	20		20	4
+         19	20	21	22	23	0	25	21		21	4
+         20	21	22	23	24	0	25	22		22	4
+      */ 
+
       // tested assignment names:
       var assignments = ["hw1", "hw2", "m1", "m2"];
       var col;
@@ -37,9 +84,9 @@ test("Test assignment mean calculations",
       // expected response of first test (value incremented for following tests):
       var expected = 18; 
 
-      for (assignment in assignments) {
-         col = assignments[assignment];
-         deepEqual( gradeMean(col, students), expected++, // expected value is incremented
+      for (assignment in hws) {
+         col = hws[assignment];
+         equal( gradeMean(col, students), expected++, 
                     "Calculating \"" + col + "\" grade average." );
       }
 
@@ -134,10 +181,10 @@ var section = {
          section: "cs1",
          repo: "2k4",
          scores: {
-            quizzes: { q1: 9, q2: 6, q3: 5, q4: "", q5: "7" },
-            midterm: { m1:"7",m2:"8",m3:"6",m4:"5" },
-            finalExam: { finalExam:"32" },
-            hw: { hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7" }
+            "quiz": { q1: 9, q2: 6, q3: 5, q4: "", q5: "7" },
+            "midterm": { m1:"7",m2:"8",m3:"6",m4:"5" },
+            "final": { finalExam:"32" },
+            "hw": { hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7" }
          }
       }
    }

@@ -1,14 +1,14 @@
 // Calculates grade mean for a particular assignment
 // params: assignment - name of column to calculate from
-//          gradeBook - grade book object
-// assert: gradeBook conforms to project standard
+//            section - class section object
+// assert: section conforms to project standard
 // return: number - mean grade for a particular column
-function gradeMean(assignment, gradeBook) {
+function gradeMean(assignment, type, section) {
    var classSize = 0;
    var sum = 0;
 
-   for (var repo in gradeBook.students) {
-      sum += gradeBook[students][repo][assignment][pointsEarned];
+   for (var repo in section.students) {
+      sum += section.students[repo].scores[type][assignment][pointsEarned];
       classSize++;
    };
 
@@ -17,13 +17,13 @@ function gradeMean(assignment, gradeBook) {
 
 // Calculates grade median for a particular assignment
 // params: assignment - name of column to calculate from
-//          gradeBook - grade book object
-// assert: gradeBook conforms to project standard
+//            section - class section object
+// assert: section conforms to project standard
 // return: number - median grade for a particular column
-function gradeMedian(assignment, gradeBook) {
+function gradeMedian(assignment, section) {
    var grades = [];
-   for (var repo in gradeBook.students) {
-      grades.push(gradeBook[students][repo][assignment][pointsEarned]);
+   for (var repo in section.students) {
+      grades.push(section.students[repo].scores[type][assignment][pointsEarned]);
    };
 
    return getMedian(grades);
@@ -31,40 +31,40 @@ function gradeMedian(assignment, gradeBook) {
 
 // Calculates grade range for a particular assignment
 // params: assignment - name of column to calculate from
-//          gradeBook - grade book object
-// assert: gradeBook conforms to project standard
+//            section - class section object
+// assert: section conforms to project standard
 // return:   number - grade range for a particular column
-function gradeRange(assignment, gradeBook) {
+function gradeRange(assignment, section) {
    var grades = [];
 
-   for (var repo in gradeBook.students) {
-      grades.push(gradeBook[students][repo][assignment][pointsEarned]); 
+   for (var repo in section.students) {
+      grades.push(section.students[repo].scores[type][assignment][pointsEarned]);
    };
 
    return getRange(grades);
 };
 
 // Calculates grade median for the whole class
-// params: gradeBook - grade book object
-// assert: gradeBook conforms to project standard
-// return:   number - median grade for a particular column
-function classMedian(gradeBook) {
+// params: section - class section object
+// assert: section conforms to project standard
+// return:  number - median grade for a particular column
+function classMedian(section) {
    var grades = [];
 
-   for (var repo in gradeBook.students) { 
-      grades.push(gradeBook[students][repo][total][pointsEarned]);
+   for (var repo in section.students) { 
+      grades.push(section.students[repo].totalGrade);
    };
 
    return getMedian(grades);
 };
 
 // Calculates grade range for the whole class
-// params: gradeBook - grade book object
-// assert: gradeBook conforms to project standard
+// params: section - class section object
+// assert: section conforms to project standard
 // return:   number - median grade for a particular column
-function classRange(gradeBook) {
-   for (var repo in gradeBook.students) {
-      grades.push(gradeBook[students][repo][total][pointsEarned]);
+function classRange(section) {
+   for (var repo in section.students) {
+      grades.push(section.students[repo].totalGrade);
    }
    
    return getRange(grades);
@@ -80,6 +80,14 @@ function getMedian(nums) {
    var numsCopy = nums.slice(0);
    var median;
    
+   // Check for negatives and non-numbers
+   var type;
+   for (int i = 0; i < numsCopy.length; i++) {
+      type = typeof numsCopy[i];
+      if (type != "number")
+         throw new Error(numsCopy[i] + " is of type " + type + ". Expected a number.");
+   }
+
    // Ascending numerical sort:
    numsCopy.sort(function(a,b){ return a-b; });
    
@@ -103,6 +111,14 @@ function getRange(nums) {
    // Get a copy of nums: (if there's a bettery way, I'd love to know)
    var numsCopy = nums.slice(0);
    
+   // Check for negatives and non-numbers
+   var type;
+   for (int i = 0; i < numsCopy.length; i++) {
+      type = typeof numsCopy[i];
+      if (type != "number")
+         throw new Error(numsCopy[i] + " is of type " + type + ". Expected a number.");
+   }
+
    // Ascending numerical sort:
    numsCopy.sort(function(a,b){ return a-b; });
    var last = numsCopy.length - 1;
