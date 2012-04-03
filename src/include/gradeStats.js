@@ -7,7 +7,7 @@ function gradeMean(assignment, type, section) {
    var grades = [];
 
    // Check if assignment exists
-   if (typeof section.assignmentInfo[type][assignment] == "undefined") {
+   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
    }
@@ -27,7 +27,7 @@ function gradeMedian(assignment, type, section) {
    var grades = [];
 
    // Check if assignment exists
-   if (typeof section.assignmentInfo[type][assignment] == "undefined") {
+   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
    }
@@ -48,7 +48,7 @@ function gradeRange(assignment, type, section) {
    var grades = [];
 
    // Check if assignment exists
-   if (typeof section.assignmentInfo[type][assignment] == "undefined") {
+   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
    }
@@ -179,7 +179,7 @@ function containsValidGrades(nums) {
 
 // Returns true if num is of type "number" and is >= 0
 function isValidGrade(num) {
-	return (typeof num == "number" && num >= 0);
+	return (jQuery.type(num) == "number" && num >= 0);
 }
 
 // Calculates and returns total grade of given student, otherwise -1 if invalid

@@ -82,8 +82,10 @@ test("Test \"primitive\" range function calculations",
 test("Test assignment mean calculations", 
    function() {
       var section = generateDummySection();
-      var hws = section.assignmentInfo["hw"].keys;
-      var midterms = section.assignmentInfo["midterm"].keys;
+      var hws = $.map(section.assignmentInfo["hw"], 
+      					 function(value, key) { return key; });
+      var midterms = $.map(section.assignmentInfo["midterm"], 
+      					 function(value, key) { return key; });
       
       // tested assignment names:
       var assignments = { "hw1": 19, "hw2": 20, "m1": 20, "m2": 21 };
@@ -108,8 +110,10 @@ test("Test assignment mean calculations",
 test("Test assignment median calculations", 
    function() {
       var section = generateDummySection();
-      var hws = section.assignmentInfo["hw"].keys;
-      var midterms = section.assignmentInfo["midterm"].keys;
+      var hws = $.map(section.assignmentInfo["hw"], 
+      					 function(value, key) { return key; });
+      var midterms = $.map(section.assignmentInfo["midterm"], 
+      					 function(value, key) { return key; });
       
       // tested assignment names:
       var assignments = { "hw1": 19, "hw2": 20, "m1": 20, "m2": 21 };
@@ -134,8 +138,10 @@ test("Test assignment median calculations",
 test("Test assignment range calculations", 
    function() {
       var section = generateDummySection();
-      var hws = section.assignmentInfo["hw"].keys;
-      var midterms = section.assignmentInfo["midterm"].keys;
+      var hws = $.map(section.assignmentInfo["hw"], 
+      					 function(value, key) { return key; });
+      var midterms = $.map(section.assignmentInfo["midterm"], 
+      					 function(value, key) { return key; });
 
       // tested assignment names:
       var assignments = { "hw1": 8, "hw2": 8, "m1": 8, "m2": 8 };
