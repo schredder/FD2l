@@ -38,15 +38,15 @@ Section: { // filled in by getRequest
    };
 
    assignmentInfo: { // Contains prorates and any other assignment specific data.
-      quizzes: {
+      quiz: {
          q1: { weight: 00, max: 00, prorate: ??? }
       }
 
-      midterms: {
+      midterm: {
          m1: { weight: 00, max: 00, prorate: ??? }
       }
 
-      homework: {
+      hw: {
          hw1: { weight: 00, max: 00, prorate: ??? }
       }
 
