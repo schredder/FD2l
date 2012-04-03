@@ -19,14 +19,22 @@ Section: { // filled in by getRequest
          repo:"2k4", // typeof string
          scores: {
             // quiz: typeof object: { [name: typeof number]* }
-            quiz: { q1:"9",q2:"6",q3:"5",q4:"",q5:"7" },
+            "quiz": { "q1": 9,"q2": 6,"q3": 5,"q4":"","q5": 7 },
             // midterm: typeof object: { [name: typeof number]* }
-            midterm: { m1:"7",m2:"8",m3:"6",m4:"5" },
+            "midterm": { "m1": 7,"m2": 8,"m3": 6,"m4": 5 },
             // I believe "final" is a reserved JS word, so this one gets to be verbose:
             // finalExam: typeof object: { [name: typeof number] }
-            finalExam: { finalExam:"32" }, 
+            "finalExam": { "finalExam": 32 }, 
             // hw: typeof object: { [name: typeof number]* }
-            hw: { hw1:"7",hw2:"6",hw3:"8",hw4:"9",hw5:"5",hw6:"7",hw7:"7" }
+            "hw": { 
+            	"hw1": 7,
+	            "hw2": 6,
+	            "hw3": 8,
+	            "hw4": 9,
+	            "hw5": 5,
+	            "hw6": 7,
+	            "hw7": 7
+	         }
          }
       };
    };
@@ -53,6 +61,13 @@ Section: { // filled in by getRequest
       finalExam: {
          finalExam: { weight: 00, max: 00, prorate: ??? }
       }
+   };
+   
+   cutoffs: {
+   	"A": 90,
+   	"B": 80,
+   	"C": 70,
+   	"D": 60 // etc.
    };
 
 /* Items below are under discussion and not currently used...

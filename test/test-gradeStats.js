@@ -8,36 +8,11 @@ function generateDummySection() {
    // Building a dummy student array for testing
    var section = {
       students: {
-         "a": { 
-            scores: {
-               "hw": { },
-               "midterm": { }
-            }
-         },
-         "b": { 
-            scores: {
-               "hw": { },
-               "midterm": { }
-            }
-         },
-         "c": { 
-            scores: {
-               "hw": { },
-               "midterm": { }
-            }
-         },
-         "d": { 
-            scores: {
-               "hw": { },
-               "midterm": { }
-            }
-         },
-         "e": { 
-            scores: {
-               "hw": { },
-               "midterm": { }
-            }
-         }
+         "a": { },
+         "b": { },
+         "c": { },
+         "d": { },
+         "e": { }
       },
 
       assignmentInfo: {
@@ -50,7 +25,8 @@ function generateDummySection() {
    var baseGrade = 15;
 
    for (var hw in hws) section.assignmentInfo["hw"][hws[hw]] = { };
-   for (var mt in midterms) section.assignmentInfo["midterm"][midterms[mt]] = { };
+   for (var mt in midterms)
+   	section.assignmentInfo["midterm"][midterms[mt]] = { };
 
    for (var stu in section.students) {
       section.students[stu] = {
@@ -216,6 +192,12 @@ test("Test class-wide range calculations",
       }
 
       equal( classRange(section), 0, "Calculating class-wide grade range." );
+
+      section.students["f"] = { totalGrade: -1 };
+      equal( classRange(section), -1, "Testing invalid grade: negative number." );
+
+      section.students["f"] = { totalGrade: "wut" };
+      equal( classRange(section), -1, "Testing invalid grade: string for grade." );
    }
 );
 
@@ -225,28 +207,59 @@ module("Grade Statistics Population");
 
 test("Test adding class-wide statistics",
    function() {
-      var section = generateDummySection();
-      addClassStats(section);
+		var section = {
+         students: {
+            "a": { totalGrade: 75 },
+            "b": { totalGrade: 75 },
+            "c": { totalGrade: 75 },
+            "d": { totalGrade: 75 },
+            "e": { totalGrade: 75 }
+         }
+      }
+      ok(addClassStats(section), "Adding class statistics.");
 
-      deepEqual( section.classStats.averageGrade, 75, 
+      equal( section.classStats.averageGrade, 75, 
                  "Testing average grade is calculated and in the right place." );
-      deepEqual( section.classStats.medianGrade, 70, 
+      equal( section.classStats.medianGrade, 75, 
                  "Testing median grade is calculated and in the right place." );
-      deepEqual( section.classStats.gradeRange, 75, 
+      equal( section.classStats.gradeRange, 0, 
                  "Testing grade range is calculated and in the right place." );
+                 
+      section.students["f"] = { totalGrade: -123 };
+		ok(!addClassStats(section), "Adding invalid class statistics, expecting false.");
+
+      equal( section.classStats.averageGrade, -1, 
+                 "Testing average grade with invalid data. (number < 0)" );
+      equal( section.classStats.medianGrade, -1, 
+                 "Testing median grade with invalid data. (number < 0)" );
+      equal( section.classStats.gradeRange, -1, 
+                 "Testing grade range with invalid data. (number < 0)" );
+
+		section.students["f"] = { totalGrade: "cats" };
+		ok(!addClassStats(section), "Adding invalid class statistics, expecting false.");
+
+      equal( section.classStats.averageGrade, -1, 
+                 "Testing average grade with invalid data. (string)" );
+      equal( section.classStats.medianGrade, -1, 
+                 "Testing median grade with invalid data. (string)" );
+      equal( section.classStats.gradeRange, -1, 
+                 "Testing grade range with invalid data. (string)" );
    }
 );
 
 test("Test adding per-student statistics",
    function() {
       var section = generateDummySection();
-      for (var student in section.students)
-         addTotalAndLetterGrades(student, students);
+      section.cutoffs = { "A": 90, "B": 80, "C": 70, "D": 60, "F": 0 }
+		
+      for (var student in section.students) {
+         ok( addTotalAndLetterGrades(student, section), 
+         	 "Adding total and letter grade for student \"" + student + "\", expecting true.");
 
-      deepEqual( section.students[repo].totalGrade, 90.5,
-                 "Testing percentage grade is calculated and put in the right place." );
-      deepEqual( section.students[repo].letterGrade, "A",
-                 "Testing letter grade is calculated and put in the right place." );
-
+      	equal( section.students[student].totalGrade, 90.5,
+                 "Testing percentage grade for student \"" + student + "\" is calculated and put in the right place." );
+      	equal( section.students[student].letterGrade, "A",
+                 "Testing letter grade for student \"" + student + "\" is calculated and put in the right place." );
+      }
    }
 );
