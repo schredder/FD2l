@@ -129,3 +129,21 @@ function getCatagories(catagoriesObj)
     return catagoriesList;
 } 
 
+function getAssignmentList(list)
+{
+	var options = [];
+	
+	var controlBegin = "<SELECT NAME='assignment_list'>";
+	var controlEnd = "</SELECT>";
+	
+	if (typeof list === 'undefined')
+		list = [];
+		 
+	for (var item in list)
+		options.push("<OPTION VALUE='" + list[item] + "'>" + list[item] + "</OPTION>");
+
+	if (options.length == 0)
+		options.push("<OPTION VALUE=''>No Assignments Available</OPTION>");
+	
+	return controlBegin + options.join("") + controlEnd; 
+}
