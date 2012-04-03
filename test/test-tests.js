@@ -61,14 +61,14 @@ module("Visualization");
 test("Ensure that the assignment list creates a dropdown of assignments",
 	function()
 	{
-		emptyObj = new Array();
-		expectedEmptyHTML = "<SELECT NAME='assignment_list'><OPTION VALUE=''>No Assignments Available</OPTION></SELECT>";
+		var emptyObj = new Array();
+		var expectedEmptyHTML = "<SELECT NAME='assignment_list'><OPTION VALUE=''>No Assignments Available</OPTION></SELECT>";
 		
-		testObj1 = ['midterm1', 'midterm2', 'midterm3'];
-		expectedFilledHTML1 = "<SELECT NAME='assignment_list'><OPTION VALUE='midterm1'>midterm1</OPTION><OPTION VALUE='midterm2'>midterm2</OPTION><OPTION VALUE='midterm3'>midterm3</OPTION></SELECT>";
+		var testObj1 = ['midterm1', 'midterm2', 'midterm3'];
+		var expectedFilledHTML1 = "<SELECT NAME='assignment_list'><OPTION VALUE='midterm1'>midterm1</OPTION><OPTION VALUE='midterm2'>midterm2</OPTION><OPTION VALUE='midterm3'>midterm3</OPTION></SELECT>";
 
-		testObj2 = ['midterm1', 'midterm2', 'midterm3', 'quiz1', 'quiz2', 'final'];
-		expectedFilledHTML2 = "<SELECT NAME='assignment_list'><OPTION VALUE='midterm1'>midterm1</OPTION><OPTION VALUE='midterm2'>midterm2</OPTION><OPTION VALUE='midterm3'>midterm3</OPTION><OPTION VALUE='quiz1'>quiz1</OPTION><OPTION VALUE='quiz2'>quiz2</OPTION><OPTION VALUE='final'>final</OPTION></SELECT>";
+		var testObj2 = ['midterm1', 'midterm2', 'midterm3', 'quiz1', 'quiz2', 'final'];
+		var expectedFilledHTML2 = "<SELECT NAME='assignment_list'><OPTION VALUE='midterm1'>midterm1</OPTION><OPTION VALUE='midterm2'>midterm2</OPTION><OPTION VALUE='midterm3'>midterm3</OPTION><OPTION VALUE='quiz1'>quiz1</OPTION><OPTION VALUE='quiz2'>quiz2</OPTION><OPTION VALUE='final'>final</OPTION></SELECT>";
 
 		expect(3);
 
