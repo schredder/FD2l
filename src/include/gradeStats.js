@@ -4,16 +4,13 @@
 // assert: section conforms to project standard
 // return: number - mean grade for a particular column
 function gradeMean(assignment, type, section) {
-   var grades = [];
-
    // Check if assignment exists
-   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
+   if ($.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
-   }
+   };
 
-   for (var repo in section.students)
-      grades.push(section.students[repo].scores[type][assignment]);
+   var grades = getGrades(assignment, type, section);
 
    return getMean(grades);
 };
@@ -24,17 +21,13 @@ function gradeMean(assignment, type, section) {
 // assert: section conforms to project standard
 // return: number - median grade for a particular column, or -1 if invalid
 function gradeMedian(assignment, type, section) {
-   var grades = [];
-
    // Check if assignment exists
-   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
+   if ($.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
-   }
-
-   for (var repo in section.students) {
-      grades.push(section.students[repo].scores[type][assignment]);
    };
+   
+   var grades = getGrades(assignment, type, section);
 
    return getMedian(grades);
 };
@@ -45,20 +38,14 @@ function gradeMedian(assignment, type, section) {
 // assert: section conforms to project standard
 // return:   number - grade range for a particular column, or -1 if invalid
 function gradeRange(assignment, type, section) {
-   var grades = [];
-
    // Check if assignment exists
-   if (jQuery.type(section.assignmentInfo[type][assignment]) == "undefined") {
+   if ($.type(section.assignmentInfo[type][assignment]) == "undefined") {
       return -1;
       //throw new Error("Assignment " + assignment + " is undefined.");
-   }
-
-   for (var repo in section.students) {
-      grades.push(section.students[repo].scores[type][assignment]);
    };
 
-   // Check for negatives and non-numbers and return
-   return (containsValidGrades(grades)) ? getRange(grades) : -1;
+   var grades = getGrades(assignment, type, section);
+   return getRange(grades);
 };
 
 // Calculates grade mean for the whole class
@@ -66,14 +53,8 @@ function gradeRange(assignment, type, section) {
 // assert: section conforms to project standard
 // return:  number - mean grade for a particular column, or -1 if invalid
 function classMean(section) {
-   var grades = [];
-
-   for (var repo in section.students) { 
-      grades.push(section.students[repo].totalGrade);
-   };
-
-   // Check for negatives and non-numbers and return
-   return (containsValidGrades(grades)) ? getMean(grades) : -1;
+   var grades = getTotalGrades(section);
+   return getMean(grades);
 };
 
 // Calculates grade median for the whole class
@@ -81,17 +62,8 @@ function classMean(section) {
 // assert: section conforms to project standard
 // return:  number - median grade for a particular column, or -1 if invalid
 function classMedian(section) {
-   var grades = [];
-
-   for (var repo in section.students) { 
-      grades.push(section.students[repo].totalGrade);
-   };
-
-   // Check for negatives and non-numbers
-   if (!containsValidGrades(grades)) return -1;
-
-   // Check for negatives and non-numbers and return
-   return (containsValidGrades(grades)) ? getMedian(grades) : -1;
+   var grades = getTotalGrades(section);
+   return getMedian(grades);
 };
 
 // Calculates grade range for the whole class
@@ -99,12 +71,8 @@ function classMedian(section) {
 // assert: section conforms to project standard
 // return:   number - median grade for a particular column, or -1 if invalid
 function classRange(section) {
-   var grades = [];
-   for (var repo in section.students) {
-      grades.push(section.students[repo].totalGrade);
-   }
-   
-   return (containsValidGrades(grades)) ? getRange(grades) : -1;
+   var grades = getTotalGrades(section); 
+   return getRange(grades);
 };
 
 // Returns the mean of an array of numbers
@@ -118,7 +86,7 @@ function getMean(nums) {
 	for (var i in numsCopy) sum += numsCopy[i];
 	
 	return (containsValidGrades(nums)) ? sum / numsCopy.length : -1;
-}
+};
 
 // Returns the median of an array of numbers
 // params: nums - array of numbers
@@ -163,7 +131,7 @@ function getRange(nums) {
    var last = numsCopy.length - 1;
 
    return numsCopy[last] - numsCopy[0];
-}
+};
 
 // Returns true if the array contains only valid grades, otherwise false
 // params: nums - array of numbers
@@ -171,16 +139,19 @@ function getRange(nums) {
 //         A valid grade is of type "number" and is >= 0.
 function containsValidGrades(nums) {
    var isValid = true;
-   for (var i = 0; i < nums.length; i++)
+   
+   for (var i in nums)
    	isValid = (isValid && isValidGrade(nums[i]));
 
    return isValid;
-}
+};
 
-// Returns true if num is of type "number" and is >= 0
+// Returns true if num is of type "number" and is >= 0 or is "null" type
+//TODO: Add Docs
 function isValidGrade(num) {
-	return (jQuery.type(num) == "number" && num >= 0);
-}
+	return (($.type(num) == "number" && num >= 0)
+	      || $.type(num) == "null");
+};
 
 // Calculates and returns total grade of given student, otherwise -1 if invalid
 // params: student - the repo name for whom to generate a letter grade
@@ -200,11 +171,11 @@ function getTotalGrade(student, section) {
 			earned += scores[type][assignment];
 			possible += assignmentInfo.max;
 			totalGrade += (earned / possible) * assignmentInfo.weight;
-		}
-	}
+		};
+	};
 	
 	return (isValidGrade(totalGrade)) ? totalGrade : -1;
-}
+};
 
 // Returns letter grade of the given student, otherwise -1 if invalid
 // params: student - the repo name for whom to generate a letter grade
@@ -217,14 +188,38 @@ function getLetterGrade(student, section) {
 		for (letter in section.cutoffs) {
 			if (finalGrade >= section.cutoffs[letter])
 				return section.cutoffs[letter];
-		}
+		};
 		// else (if finalGrade is valid)
 		return "F";
-	}
+	};
 	
 	// else (if finalGrade is invalid)
 	return -1;
-}
+};
+
+//TODO: Add Docs
+function getTotalGrades(section) {
+   var grades = [];
+   var grade;
+   for (var repo in section.students) {
+      grade = section.students[repo].totalGrade;
+      if ($.type(grade) != "null") grades.push(grade);
+   };
+
+   return grades;
+};
+
+//TODO: Add Docs
+function getGrades(assignment, type, section) {
+   var grades = [];
+   var grade;
+   for (var repo in section.students) {
+      grade = section.students[repo].scores[type][assignment];
+      if ($.type(grade) != "null") grades.push(grade);
+   };
+
+   return grades;
+};
 
 // Returns true on valid stats addition, otherwise false
 // params: section - class section object
@@ -235,7 +230,7 @@ function addClassStats(section) {
 		averageGrade: classMean(section),
 		medianGrade:  classMedian(section),
 		gradeRange:   classRange(section)
-	}
+	};
 	
 	if (section.classStats.averageGrade == -1
 	 || section.classStats.medianGrade  == -1
@@ -243,7 +238,7 @@ function addClassStats(section) {
 	 	return false;
 	// else
 	return true;
-}
+};
 
 // Returns true on successful student stats addition, otherwise false
 // params: student - the student to add stats for
@@ -259,4 +254,4 @@ function addTotalAndLetterGrades(student, section) {
 	 	return false;
 	// else
 	return true;
-}
+};
