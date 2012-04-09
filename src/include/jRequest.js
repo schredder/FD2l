@@ -83,10 +83,10 @@ function Student (student,type,catagories)
         else if(type[key]==="score")
         {
             if(catagories[key]==="totalgrade")
-                this.totalGrade =  parseInt(student[key]);
+                this.totalGrade =  parseFloat(student[key]);
             else
             {
-                this.scores[catagories[key]][key] = parseInt(student[key]);
+                this.scores[catagories[key]][key] = parseFloat(student[key]);
             }
  
         }

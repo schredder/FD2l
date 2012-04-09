@@ -86,7 +86,7 @@ test("Test student object creation", function() {
     var testCatagories = {section:"",magic:"",repo:"$CATAGORY",Total:"totalgrade",Grade:"",q1:"quiz",q2:"quiz",
                    q3:"quiz",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
                    hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
-    var emptyStudent = { letterGrade:"",note:"",totalGrade:"-1",section:"",repo:"",scores:{}};
+    var emptyStudent = { letterGrade:"",note:"",totalGrade:-1,section:"",repo:"",scores:{}};
     var filledStudent = {
                             letterGrade:"A",
                             note:"lovely test",
