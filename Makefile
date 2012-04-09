@@ -12,6 +12,14 @@ JSSOURCEDIR := src/include
 JSSOURCE := $(filter-out %-min.js,$(wildcard $(JSSOURCEDIR)/*.js))
 JSMINSOURCE := $(JSSOURCE:%.js=%-min.js)
 
+# normally expecting GNU sed
+SED := $(shell which sed) -r
+
+# fix for BSD `sed` in OS X
+ifeq (Darwin, $(shell uname))
+SED := $(shell which sed) -E
+endif
+
 # CPAN seems to think this minifier will work well all the way back to Perl 5.8,
 #   so I'm not too worried about compatibility at this time.
 MINIFIER := utils/jsMinifier.pl
@@ -29,9 +37,18 @@ $(JSMINSOURCE) :
 
 # Generates test/minify.html qunit test from primary.html to test minified js
 gentest :
-	sed -r 's/include\/(.*)\.js/include\/\1-min.js/g' \
+	$(SED) 's/include\/(.*)\.js/include\/\1-min.js/g' \
 	  test/primary.html > test/minify.html 
-	
+
+# Generate src/index.html which uses minified source, and src/index-dev.html
+#   which uses full source
+mindex : minify
+	cp src/index.html src/index-dev.html
+	$(SED) 's/include\/(.*)\.js/include\/\1-min.js/g' \
+	  src/index-dev.html > src/index.html
+
 # Removes all files ending in "-min.js" in src/include and test/minify.html
+#   and points src/index.html to regular js source
 clean :
+	-mv src/index-dev.html src/index.html
 	-rm test/minify.html $(JSMINSOURCE)
