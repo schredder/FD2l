@@ -1,12 +1,12 @@
 // requestCSV:
 // param: 	file 	- File name to be provided
 // param: 	fn		- Callback function to receive the data. 
-function requestCSV(file, fn)
+function requestCSV(file, fn, returnData)
 {
-	// jQuery request of file. 
+	// jQuery request of file.
 	$.get(file,
 		function(data) {
-			fn(data);
+			returnData =  fn(data);
 		});
 }
 

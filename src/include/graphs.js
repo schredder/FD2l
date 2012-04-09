@@ -5,6 +5,7 @@ window.onload = function () {
     bindingsMenu();
 	$("#classbreakdown").css("display","none");
     $("#otherBreakdown").css("display","none");
+
 };
 
 function menu() {
