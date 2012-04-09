@@ -86,11 +86,12 @@ test("Ensure data needed for the front end exists.",
 		var testObj = {section:"",magic:"",repo:"$CATAGORY",Total:"totalgrade",Grade:"",q1:"quiz1",q2:"quiz2",
 					   q3:"quiz3",q4:"quiz",q5:"quiz",m1:"midterm",m2:"midterm",m3:"midterm",m4:"midterm",final:"final",
 					   hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
-
-		expect(4);
-		equal(getSection(testObj), ["sec1","sec2","sec3"]);
-		equal(getCategories(getSections(testObj)[0]), ["quiz","hw","mditerm"]);
-		equal(getAssignmentList(getCategories(getSections(testObj)[0])[0]), ["quiz1","quiz2","hw2","hw3"]);
-		equal(getAssignmentScore(getAssignmentList(getCategories(getSections(testObj)[0])[0])[0]), 10);
+        //basically none of these will work we are using objects not arrays and on top of that these seem to be slightly redundant with other tests
+        //what is get assignment? 
+		//expect(4);
+		//equal(getSection(testObj), ["sec1","sec2","sec3"]);
+		//equal(getCategories(getSections(testObj)[0]), ["quiz","hw","midterm"]);
+		//equal(getAssignmentList(getCategories(getSections(testObj)[0])[0]), ["quiz1","quiz2","hw2","hw3"]);
+		//equal(getAssignmentScore(getAssignmentList(getCategories(getSections(testObj)[0])[0])[0]), 10);
 	}
 );
