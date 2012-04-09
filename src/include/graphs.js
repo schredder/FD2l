@@ -155,5 +155,5 @@ function drawStudentsClassStanding() {
     r.barchart(25, 10, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10]]).hover(fin, fout);
     r.hbarchart(25, 250, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true}).hover(fin, fout);
     r.hbarchart(25, 500, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]]).hover(fin, fout);
-    var c = r.barchart(25, 750, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true, type: "soft"}).hoverColumn(fin2, fout2);
+    var c = r.barchart(25, 750, 410, 220, [[13, 11, 12, 5, 7, 6, 3, 10,12,14,14],[2, 4, 3, 10, 8, 9, 12, 5, 3, 1, 1]], {stacked: true, type: "soft"}).hoverColumn(fin2, fout2);
 }
