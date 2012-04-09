@@ -165,20 +165,29 @@ function getTotalGrade(student, section) {
 
 	var earned = 0;
 	var possible = 0;
+	var nullWeights = [];
 	for (var type in scores) {
 		for (var assignment in scores[type]) {
 			var assignmentInfo = section.assignmentInfo[type][assignment];
 			if (!isValidGrade(scores[type][assignment])) { return -1; }
-         else if ($.type(scores[type][assignment]) != "null") {
+         else if ($.type(scores[type][assignment]) == "null") {
+         	nullWeights.push(assignmentInfo.weight);
+         }
+         else {
 			   earned = scores[type][assignment];
 			   possible = assignmentInfo.max;
 			   totalGrade += (earned / possible) * assignmentInfo.weight;
-         }
+			}
 		};
 	};
 
-   totalGrade = totalGrade * 100;
+	// Factor exempt/ungraded assignments into total
+	var ungradedFactor = 0;
+	for (var i in nullWeights) ungradedFactor += totalGrade * nullWeights[i];
 	
+	// Convert to %
+   totalGrade = (totalGrade + ungradedFactor) * 100;
+   
    // dirty rounding to 2 decimal places
    totalGrade = Math.round(totalGrade * 100) / 100;
 

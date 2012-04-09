@@ -173,6 +173,28 @@ test("Test assignment range calculations",
    }
 );
 
+test("Test class-wide mean calculations", 
+   function() {
+      var section = {
+         students: {
+            "a": { totalGrade: 75 },
+            "b": { totalGrade: 75 },
+            "c": { totalGrade: 75 },
+            "d": { totalGrade: 75 },
+            "e": { totalGrade: 75 }
+         }
+      }
+
+      equal( classMean(section), 75, "Calculating class-wide grade mean." );
+
+      section.students["f"] = { totalGrade: -1 };
+      equal( classMean(section), -1, "Testing invalid grade: negative number." );
+
+      section.students["f"] = { totalGrade: "wut" };
+      equal( classMean(section), -1, "Testing invalid grade: string for grade." );
+   }
+);
+
 test("Test class-wide median calculations", 
    function() {
       var section = {
@@ -296,8 +318,9 @@ test("Test adding per-student statistics",
                   + "\" is calculated and put in the right place." );
       }
 
-      //section.students["e"].scores["hw"]["hw2"] = undefined;
-      //ok( addTotalAndLetterGrades("e", section), "Adding total and letter grade for student \"e\", expecting true.");
-
+      section.students["e"].scores["hw"]["hw2"] = null;
+      ok( addTotalAndLetterGrades("e", section), "Adding total and letter grade for student \"e\", expecting true.");
+      equal( section.students["e"].totalGrade, 80.88, "Testing percentage grade of exempt/ungraded assignment.");
+      equal( section.students["e"].letterGrade, "B", "Testing letter grade of exempt/ungraded assignment.");
    }
 );
