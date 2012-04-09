@@ -136,7 +136,7 @@ function getRange(nums) {
 // Returns true if the array contains only valid grades, otherwise false
 // params: nums - array of numbers
 // return: true if array is only valid grades, otherwise false
-//         A valid grade is of type "number" and is >= 0.
+//         A valid grade is of type "number" and is >= 0, or is null.
 function containsValidGrades(nums) {
    var isValid = true;
    
@@ -147,7 +147,9 @@ function containsValidGrades(nums) {
 };
 
 // Returns true if num is of type "number" and is >= 0 or is "null" type
-//TODO: Add Docs
+// params: num - a number
+// return: true if num is a valid grade or null, otherwise false
+//         A valid grade is of type "number" and is >= 0, or is null.
 function isValidGrade(num) {
 	return (($.type(num) == "number" && num >= 0)
 	      || $.type(num) == "null");
@@ -160,20 +162,26 @@ function isValidGrade(num) {
 function getTotalGrade(student, section) {
 	var scores = section.students[student].scores;
 	var totalGrade = 0;
+
+	var earned = 0;
+	var possible = 0;
 	for (var type in scores) {
-		var earned = 0;
-		var possible = 0;
-		
 		for (var assignment in scores[type]) {
 			var assignmentInfo = section.assignmentInfo[type][assignment];
-			if (!isValidGrade(scores[type][assignment])) return -1;
-
-			earned += scores[type][assignment];
-			possible += assignmentInfo.max;
-			totalGrade += (earned / possible) * assignmentInfo.weight;
+			if (!isValidGrade(scores[type][assignment])) { return -1; }
+         else if ($.type(scores[type][assignment]) != "null") {
+			   earned = scores[type][assignment];
+			   possible = assignmentInfo.max;
+			   totalGrade += (earned / possible) * assignmentInfo.weight;
+         }
 		};
 	};
+
+   totalGrade = totalGrade * 100;
 	
+   // dirty rounding to 2 decimal places
+   totalGrade = Math.round(totalGrade * 100) / 100;
+
 	return (isValidGrade(totalGrade)) ? totalGrade : -1;
 };
 
@@ -182,14 +190,15 @@ function getTotalGrade(student, section) {
 //			  section - the section the above student resides
 // return: letter grade of given student if final grade is valid, otherwise -1
 function getLetterGrade(student, section) {
-	var finalGrade = section.students[student].finalGrade;
+	var totalGrade = section.students[student].totalGrade;
 
-	if (containsValidGrades([finalGrade])) {
+	if (isValidGrade(totalGrade)) {
+      if ($.type(totalGrade) == "null") return totalGrade;
 		for (letter in section.cutoffs) {
-			if (finalGrade >= section.cutoffs[letter])
-				return section.cutoffs[letter];
+			if (totalGrade >= section.cutoffs[letter])
+				return letter;
 		};
-		// else (if finalGrade is valid)
+		// else (if totalGrade is valid)
 		return "F";
 	};
 	
@@ -197,7 +206,9 @@ function getLetterGrade(student, section) {
 	return -1;
 };
 
-//TODO: Add Docs
+// Returns total grade for every student in the given section
+// params: section - The section to get total grades from
+// return: an array of total grades
 function getTotalGrades(section) {
    var grades = [];
    var grade;
@@ -209,7 +220,10 @@ function getTotalGrades(section) {
    return grades;
 };
 
-//TODO: Add Docs
+// Returns every students' grade for a particular assignment
+// params: assignment - the assignment of the desired grade
+//         type - the type of assignment
+//         section - the section object containing students and their grades
 function getGrades(assignment, type, section) {
    var grades = [];
    var grade;

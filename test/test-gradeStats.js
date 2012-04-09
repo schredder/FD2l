@@ -24,9 +24,19 @@ function generateDummySection() {
    var midterms = ["m1", "m2"];
    var baseGrade = 15;
 
-   for (var hw in hws) section.assignmentInfo["hw"][hws[hw]] = { };
-   for (var mt in midterms)
+   for (var hw in hws) {
+      section.assignmentInfo["hw"][hws[hw]] = { };
+      section.assignmentInfo["hw"][hws[hw]].weight = .2;
+      section.assignmentInfo["hw"][hws[hw]].min = 0;
+      section.assignmentInfo["hw"][hws[hw]].max = 25;
+   };
+
+   for (var mt in midterms) {
    	section.assignmentInfo["midterm"][midterms[mt]] = { };
+      section.assignmentInfo["midterm"][midterms[mt]].weight = .3;
+      section.assignmentInfo["midterm"][midterms[mt]].min = 0;
+      section.assignmentInfo["midterm"][midterms[mt]].max = 30;
+   };
 
    for (var stu in section.students) {
       section.students[stu] = {
@@ -256,16 +266,38 @@ test("Test adding class-wide statistics",
 test("Test adding per-student statistics",
    function() {
       var section = generateDummySection();
-      section.cutoffs = { "A": 90, "B": 80, "C": 70, "D": 60, "F": 0 }
-		
+      section.cutoffs = { "A": 90, "B": 80, "C": 70, "D": 60, "F": 0 };
+
+      var expectedTotals = {
+         "a": 57.8,
+         "b": 65.0,
+         "c": 72.2,
+         "d": 79.4,
+         "e": 86.6
+      };
+
+      var expectedLetter = {
+         "a": "F",
+         "b": "D",
+         "c": "C",
+         "d": "C",
+         "e": "B"
+      }
+
       for (var student in section.students) {
          ok( addTotalAndLetterGrades(student, section), 
          	 "Adding total and letter grade for student \"" + student + "\", expecting true.");
 
-      	equal( section.students[student].totalGrade, 90.5,
-                 "Testing percentage grade for student \"" + student + "\" is calculated and put in the right place." );
-      	equal( section.students[student].letterGrade, "A",
-                 "Testing letter grade for student \"" + student + "\" is calculated and put in the right place." );
+      	equal( section.students[student].totalGrade, expectedTotals[student],
+                 "Testing percentage grade for student \"" + student 
+                  + "\" is calculated and put in the right place." );
+      	equal( section.students[student].letterGrade, expectedLetter[student],
+                 "Testing letter grade for student \"" + student 
+                  + "\" is calculated and put in the right place." );
       }
+
+      //section.students["e"].scores["hw"]["hw2"] = undefined;
+      //ok( addTotalAndLetterGrades("e", section), "Adding total and letter grade for student \"e\", expecting true.");
+
    }
 );
