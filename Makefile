@@ -36,7 +36,7 @@ $(JSMINSOURCE) :
 	$(MINIFIER) $(@:%-min.js=%.js) $@
 
 # Generates test/minify.html qunit test from primary.html to test minified js
-gentest :
+gentest : minify
 	$(SED) 's/include\/(.*)\.js/include\/\1-min.js/g' \
 	  test/primary.html > test/minify.html 
 
