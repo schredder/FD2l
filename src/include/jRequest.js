@@ -61,7 +61,7 @@ function Student (student,type,catagories)
 {    
     this.letterGrade = "";
     this.note = "";
-    this.totalGrade = "-1";
+    this.totalGrade = -1;
     this.section = "";
     this.repo = "";
     this.scores = getCatagories(catagories);
@@ -83,10 +83,10 @@ function Student (student,type,catagories)
         else if(type[key]==="score")
         {
             if(catagories[key]==="totalgrade")
-                this.totalGrade=student[key];
+                this.totalGrade =  parseInt(student[key]);
             else
             {
-                this.scores[catagories[key]][key]=student[key];
+                this.scores[catagories[key]][key] = parseInt(student[key]);
             }
  
         }
@@ -119,9 +119,6 @@ function getCatagories(catagoriesObj)
 {
     var catagoriesList = {};
     
-    //if (typeof catagoriesObj != "object")
-    //    return {};
-    //var keys = Object.keys(catagoriesObj);
     for (var item in catagoriesObj)
 
         if(catagoriesObj[item] != "$CATAGORY" && catagoriesObj[item]!= "" && catagoriesObj[item]!="totalgrade")
