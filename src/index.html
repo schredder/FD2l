@@ -23,8 +23,25 @@
 
         <!-- Our Stuff -->
         <script language="javascript" type="text/javascript" src="include/jRequest.js"></script>
+        <script language="javascript" type="text/javascript" src="include/gradeStats.js"></script>
         <script language="javascript" type="text/javascript">
-            $(requestCSV("gradesExampleFixed.csv", getSection))
+            //$(requestCSV("gradesExampleFixed.csv", getSection));
+            var lsection;
+            var cMean;
+            var cMedian;
+            var cRange;
+
+            var studentLetterGrade;
+            var studentTotalGrade;
+            $(requestCSV("gradesExampleFixed.csv", function(data) {
+                lsection = getSection(data);
+                cMean = classMean(lsection);
+                cMedian = classMedian(lsection);
+                cRange = classRange(lsection);
+
+                studentLetterGrade = getLetterGrade("kj5",lsection);
+                //cstudentTotalGrade = getTotalGrade("kj5",lsection);
+            }));
         </script>
         <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
         <title>FD2L - Grade Viewer</title>
