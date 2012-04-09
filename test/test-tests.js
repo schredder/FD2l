@@ -88,7 +88,7 @@ test("Ensure data needed for the front end exists.",
 					   hw1:"hw",hw2:"hw",hw3:"hw",hw4:"hw",hw5:"hw",hw6:"hw",hw7:"hw",HWFeedback:""};
 
 		expect(4);
-		equal(getSections(testObj), ["sec1","sec2","sec3"]);
+		equal(getSection(testObj), ["sec1","sec2","sec3"]);
 		equal(getCategories(getSections(testObj)[0]), ["quiz","hw","mditerm"]);
 		equal(getAssignmentList(getCategories(getSections(testObj)[0])[0]), ["quiz1","quiz2","hw2","hw3"]);
 		equal(getAssignmentScore(getAssignmentList(getCategories(getSections(testObj)[0])[0])[0]), 10);
