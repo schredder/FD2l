@@ -1,5 +1,5 @@
 window.onload = function () {
-    drawClassGradeBreakdown();
+    //drawClassGradeBreakdown();
     drawStudentsClassStanding();
     menu();
     bindingsMenu();
@@ -37,9 +37,48 @@ function bindingsMenu() {
     });
 }
 
-function drawClassGradeBreakdown() {
+function filterClassTotalGrades(data) {
+    var barData = [0,0,0,0,0,0,0,0,0,0];
+    for(var score in data) {
+        lscore = parseInt(data[score]);
+        console.log(lscore);
+        if(lscore < 10) {
+            barData[0]++;
+        }
+        else if(lscore < 20) {
+            barData[1]++;
+        }
+        else if(lscore < 30) {
+            barData[2]++;
+        }
+        else if(lscore < 40) {
+            barData[3]++;
+        }
+        else if(lscore < 50) {
+            barData[4]++;
+        }
+        else if(lscore < 60) {
+            barData[5]++;
+        }
+        else if(lscore < 70) {
+            barData[6]++;
+        }
+        else if(lscore < 80) {
+            barData[7]++;
+        }
+        else if(lscore < 90) {
+            barData[8]++;
+        }
+        else {
+            barData[9]++;
+        }
+    }
+    return barData;
+}
+
+/*function drawClassGradeBreakdown(data) {
     var r = Raphael("classStanding"),
-        pie = r.piechart(200, 200, 100, [10, 20, 13, 32, 5], { legend: ["%%.%% A", "%%.%% B", "%%.%% C", "%%.%% D", "%%.%% F"], legendpos: "east"});
+        pie = r.piechart(200, 200, 100, data, { legend: ["%%.%% 90-100", "%%.%% 80-89", "%%.%% 70-79", "%%.%% 60-69", "%%.%% 50-59", "%%.%% 40-49", "%%.%% 30-39", "%%.%% 20-29", "%%.%% 10-19", "%%.%% 0-9"], legendpos: "east"});
 
     r.text(260, 50, "Class Grade Breakdown").attr({ font: "20px sans-serif" });
     pie.hover(function () {
@@ -59,6 +98,32 @@ function drawClassGradeBreakdown() {
             this.label[1].attr({ "font-weight": 400 });
         }
     });
+}*/
+
+function drawClassGradeBreakdown(data) {
+    var r = Raphael("classStanding"),
+        fin = function () {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+        },
+        fout = function () {
+            this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+        },
+        txtattr = { font: "12px sans-serif" };
+        txtattr2 = { font: "16px sans-serif"};
+
+    r.text(230,50, "Class Grade Breakdown").attr(txtattr2);
+    r.text(50,317, "0-9%").attr(txtattr);
+    r.text(89,317, "10%").attr(txtattr);
+    r.text(128,317, "20%").attr(txtattr);
+    r.text(167,317, "30%").attr(txtattr);
+    r.text(206,317, "40%").attr(txtattr);
+    r.text(245,317, "50%").attr(txtattr);
+    r.text(284,317, "60%").attr(txtattr);
+    r.text(323,317, "70%").attr(txtattr);
+    r.text(362,317, "80%").attr(txtattr);
+    r.text(406,317, "90-100%").attr(txtattr);
+
+    r.barchart(25,50,400,280, data).hover(fin,fout);
 }
 
 function drawStudentsClassStanding() {

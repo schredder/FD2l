@@ -33,6 +33,7 @@
 
             var studentLetterGrade;
             var studentTotalGrade;
+            var classTotalGrades;
             $(requestCSV("gradesExampleFixed.csv", function(data) {
                 lsection = getSection(data);
                 cMean = classMean(lsection);
@@ -41,6 +42,8 @@
 
                 studentLetterGrade = getLetterGrade("kj5",lsection);
                 //cstudentTotalGrade = getTotalGrade("kj5",lsection);
+                classTotalGrades = getTotalGrades(lsection);
+                drawClassGradeBreakdown(filterClassTotalGrades(classTotalGrades));
             }));
         </script>
         <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
