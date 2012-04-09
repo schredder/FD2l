@@ -44,6 +44,7 @@
                 //cstudentTotalGrade = getTotalGrade("kj5",lsection);
                 classTotalGrades = getTotalGrades(lsection);
                 drawClassGradeBreakdown(filterClassTotalGrades(classTotalGrades));
+                drawOtherGradeBreakdown(filterClassTotalGrades(classTotalGrades));
             }));
         </script>
         <script language="javascript" type="text/javascript" src="include/graphs.js"></script>
@@ -60,7 +61,7 @@
 			</div>
 			<div id="yourbreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer" checked="checked"><div id="yourStanding"></div></div><br />
 			<div id="classbreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer"><div id="classStanding"></div></div><br />
-			<div id="otherBreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer">BLAH</div>
+			<div id="otherBreakdown" class="ui-helper-reset ui-widget-content ui-corner-bottom graphContainer"><div id="otherStanding"></div></div>
 		</div>
     </body>
 </html>

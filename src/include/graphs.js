@@ -76,8 +76,8 @@ function filterClassTotalGrades(data) {
     return barData;
 }
 
-/*function drawClassGradeBreakdown(data) {
-    var r = Raphael("classStanding"),
+function drawOtherGradeBreakdown(data) {
+    var r = Raphael("otherStanding"),
         pie = r.piechart(200, 200, 100, data, { legend: ["%%.%% 90-100", "%%.%% 80-89", "%%.%% 70-79", "%%.%% 60-69", "%%.%% 50-59", "%%.%% 40-49", "%%.%% 30-39", "%%.%% 20-29", "%%.%% 10-19", "%%.%% 0-9"], legendpos: "east"});
 
     r.text(260, 50, "Class Grade Breakdown").attr({ font: "20px sans-serif" });
@@ -98,7 +98,7 @@ function filterClassTotalGrades(data) {
             this.label[1].attr({ "font-weight": 400 });
         }
     });
-}*/
+}
 
 function drawClassGradeBreakdown(data) {
     var r = Raphael("classStanding"),
@@ -127,7 +127,7 @@ function drawClassGradeBreakdown(data) {
 }
 
 function drawStudentsClassStanding() {
-    var r = Raphael("yourStanding"),
+    var r = Raphael("yourStanding",420,1000),
         fin = function () {
             this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
         },
@@ -148,12 +148,12 @@ function drawStudentsClassStanding() {
         txtattr = { font: "12px sans-serif" };
 
     r.text(160, 10, "Single Series Chart").attr(txtattr);
-    r.text(480, 10, "Multiline Series Stacked Chart").attr(txtattr);
-    r.text(160, 250, "Multiple Series Chart").attr(txtattr);
-    r.text(480, 250, "Multiline Series Stacked Chart\nColumn Hover").attr(txtattr);
+    r.text(160, 250, "Multiline Series Stacked Chart").attr(txtattr);
+    r.text(160, 500, "Multiple Series Chart").attr(txtattr);
+    r.text(160, 750, "Multiline Series Stacked Chart\nColumn Hover").attr(txtattr);
 
-    r.barchart(10, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10]]).hover(fin, fout);
-    r.hbarchart(330, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true}).hover(fin, fout);
-    r.hbarchart(10, 250, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]]).hover(fin, fout);
-    var c = r.barchart(330, 250, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true, type: "soft"}).hoverColumn(fin2, fout2);
+    r.barchart(25, 10, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10]]).hover(fin, fout);
+    r.hbarchart(25, 250, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true}).hover(fin, fout);
+    r.hbarchart(25, 500, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]]).hover(fin, fout);
+    var c = r.barchart(25, 750, 410, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true, type: "soft"}).hoverColumn(fin2, fout2);
 }
